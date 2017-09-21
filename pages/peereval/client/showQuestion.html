@@ -1,0 +1,23 @@
+<template name="showQuestion">
+  <h1>{{title}}</h1>
+  <pre>
+  {{question}}
+  </pre>
+  {{#if answer}}
+  <hr>
+  User:{{answer.userName}}
+  <br>
+  Time:{{answer.createdAt}}
+  <pre>
+    {{answer.answer}}
+  </pre>
+  {{else}}
+  <h2>Enter your answer here </h2>
+  <textarea class="form-control js-student-answer" rows="10" ></textarea>
+  <br>
+  <br>
+  Press <button class="btn btn-lg btn-info js-submit-answer">submit</button> when done!
+  <br>
+  You will not be able to edit your answers!
+  {{/if}}
+</template>

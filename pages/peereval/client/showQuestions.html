@@ -1,0 +1,18 @@
+<template name="showQuestions">
+<h1>Questions</h1>
+<ul>
+  {{#each question in questions}}
+  {{> question_item q=question}}
+  {{/each}}
+</ul>
+</template>
+
+
+<template name="question_item">
+    <li> <a class="btn btn-small btn-warning" href="/showQuestionFull/{{q._id}}">{{q.title}}</a>
+      {{#if answer}}
+      <a class="btn btn-small btn-info" href="seeReviews/{{q._id}}">See reviews of your answer</a> 
+      <a class="btn btn-small btn-primary" href="reviewAnswers/{{q._id}}">Review others answers</a>
+      {{/if}}
+    </li>
+</template>

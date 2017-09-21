@@ -1,0 +1,63 @@
+<template name="reviewAnswers">
+  Please review the following answer to this question:
+  <h1>{{q.title}}</h1>
+  <p><i>{{q.question}}</i></p>
+  {{> reviewAnswer a=a q=q}}
+</template>
+
+
+
+<template name="reviewAnswer">
+  {{# if a}}
+  Please give a grade and write a comment
+  explaining what was wrong and what was right with this attempted answer
+  <div class="row">
+    <div class="col-md-6">
+      <pre class="bg-info">{{a.answer}}</pre>
+    </div>
+    <div class="col-md-6">
+  Grade:
+  <select class="js-rate-answer">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+  <br>
+  Comments:
+  <br>
+  <textarea class="js-review-answer form-control bg-success" rows="5"></textarea>
+  <br>
+</div>
+</div>
+
+  <button class="js-submit-review btn btn-lg btn-warning">Submit Review</button>
+  <br><br><br><br>
+  <br>
+ {{else}}
+    <hr><hr>
+    <h2>You have reviewed all available answers. Please try again later.</h2>
+ {{/if}}
+</template>
+
+
+
+<template name="reviewAnswersOLD">
+  Please select an answer to review:
+  <ul>
+    {{#each answer in answers}}
+    {{> answerLink answer=answer}}
+    {{/each}}
+  </ul>
+  <p>{{q.title}}<br>{{q.question}}</p>
+  <pre>{{a.answer}}</pre>
+  {{#if selected}}
+  {{> reviewAnswer answer = selected}}
+  {{/if}}
+</template>
+
+<template name="answerLink">
+  <li> Answer: <pre>{{answer.answer}}</pre></li>
+</template>

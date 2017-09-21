@@ -1,0 +1,28 @@
+<template name="seeReviews">
+  <h1>Reviews of your answer</h1>
+  <h2>The question</h2>
+  <h3>{{answer.q.title}}</h3>
+  <pre>
+    {{answer.q.question}}
+  </pre>
+  <h2>Your answer</h2>
+  <pre>
+    {{answer.a.answer}}
+  </pre>
+  <h2>Reviews of your answer by other students</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr><th>Rating</th><th>Review</th><th>CreatedAt</th></tr>
+    </thead>
+    <tbody>
+      {{#each r in reviews}}
+        <tr>
+          <td>{{r.rating}}</td>
+          <td><pre>{{r.review}}</pre></td>
+          <td>{{r.createdAt}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</template>
