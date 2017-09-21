@@ -3,3 +3,4 @@
 movies/*
 *.txt
 public/images
+node_modules
