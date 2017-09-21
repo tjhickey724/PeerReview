@@ -38,7 +38,7 @@ Template.reviewAnswer.events({
     Answers.update(this.a._id,{$push:{myReviewers:Meteor.userId()}});
     z = Reviews.insert(reviewObj);
     console.dir(['z',z]);
-    Router.go('/showQuestions');
+    Router.go('/showQuestionFull/'+this.q._id);
     //updateToReview();
   }
 })

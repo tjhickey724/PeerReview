@@ -10,6 +10,10 @@
   <pre class="bg-info">
     {{answer.answer}}
   </pre>
+  <a class="btn btn-small btn-info" href="/seeReviews/{{_id}}">See reviews of your answer</a>
+  <a class="btn btn-small btn-primary" href="/reviewAnswers/{{_id}}">Review others answers</a>
+  <a class="btn btn-small btn-primary" href="/viewClass/{{class_id}}">View more questions</a>
+
   {{else}}
   <h2>Enter your answer here </h2>
   <textarea class="form-control js-student-answer" rows="10" ></textarea>

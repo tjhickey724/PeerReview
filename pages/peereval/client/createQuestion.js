@@ -6,7 +6,7 @@ Template.createQuestion.events({
     var title = $(".js-title").val();
     var question = $(".js-question-description").val();
     var class_id = Session.get('class_id');
-    
+
     var dbentry =
       {title:title,
        question:question,
@@ -15,6 +15,6 @@ Template.createQuestion.events({
        createdBy:Meteor.userId()}
     console.dir(dbentry);
     Questions.insert(dbentry);
-    Router.go('/showQuestions');
+    Router.go('/viewClass/'+class_id);
   }
 })

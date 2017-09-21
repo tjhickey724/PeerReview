@@ -1,38 +1,42 @@
 <template name="home">
 
 <div class="jumbotron">
-<h1>Brandeis Peer Evaluation</h1>
-<p> Create or enroll in a class below </p>
+<h1>Classes</h1>
+<p> Enroll in a class with a class pin (7 digits): <input type="text" id="classcode">
+<input id="joinclass" type="submit" value="join">
+</p>
 </div>
 
-
-<h2>Classes</h2>
+<div class="row">
+  <div class="col-md-5 bg-danger">
+<h2>Classes I'm taking</h2>
 <ul>
   {{#each class in classes}}
   {{> showclass class=class}}
   {{/each}}
 </ul>
-<hr>
-<h2>Join a class</h2>
-Class id: <input type="text" id="classcode">
-<input id="joinclass" type="submit" value="join">
-<hr>
-<h2>Classes I own</h2>
+</div>
+
+<div class="col-md-5 col-md-offset-2 bg-danger">
+<h2>Classes I'm teaching</h2>
 <ul>
   {{#each class in myclasses}}
   {{> showmyclass class=class}}
   {{/each}}
 </ul>
+</div>
+</div>
 
-{{#if theClass}}
-  {{> showQuestions}}
-{{/if}}
 </template>
 
 <template name="showclass">
-  <button id="viewClass" class="btn btn-large btn-primary">{{class.class_name}}</button>
+  <li><a href="viewClass/{{class.class_id}}">
+          {{class.class_name}}
+  </a></li>
 </template>
 
+
+
 <template name="showmyclass">
-  <button id="viewMyClass" class="btn btn-large btn-primary">{{class.name}}</button>
+  <li><a href="viewClass/{{class._id}}">{{class.name}}</a></li>
 </template>

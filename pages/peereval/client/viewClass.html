@@ -1,0 +1,8 @@
+<template name="viewClass">
+  <h1>{{class.name}}</h1>
+  {{> showQuestions class=class}}
+  <hr>
+  {{#if owns_class class}}
+  <a class="btn btn-small btn-primary" href="/createQuestion/{{class._id}}">Create a new Question</a>
+  {{/if}}
+</template>
