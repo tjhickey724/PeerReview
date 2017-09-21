@@ -5,6 +5,8 @@ Template.seeReviews.helpers({
 
   answer: function(){
     console.dir(this.reviews);
+    if (!this.reviews[0])
+      return undefined;
     const a = Answers.findOne({question:this.reviews[0].question_id});
     const q = Questions.findOne({_id:a.question});
     const z = {a:a, q:q};

@@ -1,0 +1,9 @@
+<template name="createClass">
+  {{#if currentUser}}
+  <h1>Create a new class</h1>
+    Name of the Class: <input type="text" id="classname"><br>
+    <input class="btn btn-small btn-info" id="createClass" type="submit" value="Create Class">
+  {{else}}
+    You need to sign in to create a class
+  {{/if}}
+</template>

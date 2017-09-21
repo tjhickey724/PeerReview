@@ -1,5 +1,7 @@
 Template.showQuestions.helpers({
-  questions: function(){return Questions.find();}
+  questions: function(){
+    var class_id = Session.get('class_id');
+    return Questions.find({class_id:class_id});}
 })
 
 Template.question_item.helpers({

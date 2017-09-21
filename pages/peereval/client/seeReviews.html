@@ -1,14 +1,18 @@
 <template name="seeReviews">
   <h1>Reviews of your answer</h1>
-  <h2>The question</h2>
+
+  {{#if answer}}
+
   <h3>{{answer.q.title}}</h3>
-  <pre>
+  <pre class="bg-info">
     {{answer.q.question}}
   </pre>
   <h2>Your answer</h2>
-  <pre>
+  <pre class="bg-primary">
     {{answer.a.answer}}
   </pre>
+
+
   <h2>Reviews of your answer by other students</h2>
   <table class="table table-bordered table-striped">
     <thead>
@@ -24,5 +28,8 @@
       {{/each}}
     </tbody>
   </table>
+  {{else}}
+  No one has reviewed your answer yet. Please check back later.
+  {{/if}}
 
 </template>

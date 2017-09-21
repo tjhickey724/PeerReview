@@ -1,7 +1,7 @@
 <template name="reviewAnswers">
-  Please review the following answer to this question:
   <h1>{{q.title}}</h1>
-  <p><i>{{q.question}}</i></p>
+  <p>Please review this question<hr><i>{{q.question}}</i></p>
+  <hr>
   {{> reviewAnswer a=a q=q}}
 </template>
 

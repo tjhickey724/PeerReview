@@ -14,7 +14,7 @@
 		        <span class="icon-bar"></span>
 		      </button>
 		      <a class="navbar-brand" href="{{pathFor 'home'}}">
-		      	Peer Evaluation</a>
+		      	Peer Evaluation for {{current_class}}</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,10 +30,14 @@
 					<li><a href="{{pathFor 'firefly'}}">Firefly</a></li>
 					<li><a href="{{pathFor 'contact'}}">Contact us</a></li>
 					<li><a href="{{pathFor 'chat'}}">Chat</a></li>
-				-->
-				{{#if currentUser}}
 					<li><a href="{{pathFor 'createQuestion'}}">Create a Question</a></li>
 					<li><a href="{{pathFor 'showQuestions'}}">Show the Questions</a></li>
+				-->
+				{{#if currentUser}}
+					{{#if owns_class}}
+					  <li><a href="{{pathFor 'createQuestion'}}">Create a Question</a></li>
+					{{/if}}
+					 <li><a href="{{pathFor 'showQuestions'}}">Show the Questions</a></li>
 				{{/if}}
 				</ul>
 			    <ul class="nav navbar-nav navbar-right">
