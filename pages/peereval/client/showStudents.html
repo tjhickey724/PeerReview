@@ -1,0 +1,32 @@
+<template name="showStudents">
+  <h1>Student Info for <a href="/viewClass/{{class._id}}">{{class.name}}</a></h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+          <td>Name</td>
+          <td>Email</td>
+        {{#each question in questions class}}
+          <td>{{question.title}}</td>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+  {{#each student in students class}}
+    {{> showStudent student=student}}
+  {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="showStudent">
+  <tr>
+    <td> {{profile.name}}</td>
+    <td> {{profile.email}}</td>
+    {{#each question in questions student.class_id}}
+    <td> {{numReviews question}}</td>
+    {{/each}}
+
+  </tr>
+
+</template>

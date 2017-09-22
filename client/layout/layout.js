@@ -5,5 +5,9 @@ Template.layout.helpers({
 
   current_class:function(){
     return "????";
+  },
+
+  profile: function(){
+    return Profiles.findOne({id:Meteor.userId()});
   }
 })

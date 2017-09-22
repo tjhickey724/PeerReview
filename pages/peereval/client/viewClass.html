@@ -1,11 +1,12 @@
 <template name="viewClass">
   <h1>{{class.name}}</h1>
-  {{> showQuestions class=class}}
-  <hr>
+
   {{#if owns_class class}}
   <a class="btn btn-small btn-primary" href="/createQuestion/{{class._id}}">Create a new Question</a>
-  <br><br>
   <button class="btn btn-small btn-info js-showStudentPin">Show Student Pin</button>
   <button class="btn btn-small btn-info js-showTeacherPin">Show TA Pin</button>
+  <a class="btn btn-small btn-info" href="/showStudents/{{class._id}}">Show Student Info</a>
   {{/if}}
+
+    {{> showQuestions class=class}}
 </template>
