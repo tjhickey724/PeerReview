@@ -4,3 +4,15 @@ Template.viewClass.helpers({
 
   }
 })
+
+Template.viewClass.events({
+  "click .js-showStudentPin"(event,instance){
+    console.dir(this);
+    alert("Student Pin: "+this.class.studentPin);
+  },
+  "click .js-showTeacherPin"(event,instance){
+    console.dir(this);
+    alert("Teacher Pin: "+this.class.teacherPin);
+  },
+
+})

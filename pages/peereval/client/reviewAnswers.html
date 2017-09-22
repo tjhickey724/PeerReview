@@ -16,14 +16,12 @@
       <pre class="bg-info">{{a.answer}}</pre>
     </div>
     <div class="col-md-6">
-  Grade:
+      <pre class="bg-primary">{{q.rubric}}</pre>
+  Grade: out of {{points}} points:
   <select class="js-rate-answer">
-    <option>0</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
+    {{#each point in points}}
+       <option>{{point}}</option>
+    {{/each}}
   </select>
   <br>
   Comments:
