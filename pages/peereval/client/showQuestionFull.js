@@ -60,7 +60,7 @@ Template.showQuestionFull.events({
         question:this._id,
         createdAt:new Date(),
         createdBy: Meteor.userId(),
-        userName:Meteor.user().emails[0].address,
+        userName: 'anon',
         myReviews:[],  // list of _id's of students reviewed by this person
         myReviewers:[],
       };
