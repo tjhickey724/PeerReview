@@ -33,7 +33,7 @@ Template.reviewAnswer.events({
     const rating = $(".js-rate-answer").val();
     const theReview = $(".js-review-answer").val();
     const reviewObj =
-      {rating:rating,
+      {rating:parseInt(rating),
        review:theReview,
        createdAt: new Date(),
        createdBy: Meteor.userId(),

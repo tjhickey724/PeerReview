@@ -1,18 +1,34 @@
 <template name="showQuestions">
 <h1>Questions</h1>
-<ul>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <td>Problem</td>
+      <td>Completion Date</td>
+      <td>Reviews you wrote</td>
+      <td>Scores for your Answers</td>
+    </tr>
+  </thead>
+  <tbody>
   {{#each question in questions class._id}}
   {{> question_item q=question}}
   {{/each}}
-</ul>
+  </tbody>
+</table>
 </template>
 
 
 <template name="question_item">
-    <li> <a class="btn btn-small btn-warning" href="/showQuestionFull/{{q._id}}">{{q.title}}</a>
+    <tr>
+      <td> <a class="btn btn-small btn-warning" href="/showQuestionFull/{{q._id}}">{{q.title}}</a>
+      </td>
+      <td> {{#if reviews.answer}}{{reviews.answer.createdAt}}{{else}}Not completed yet{{/if}}</td>
+      <td> {{reviews.num}}</td>
+      <td> {{reviews.ratings}}</td>
       {{#if false}}
       <a class="btn btn-small btn-info" href="/seeReviews/{{q._id}}">See reviews of your answer</a>
       <a class="btn btn-small btn-primary" href="/reviewAnswers/{{q._id}}">Review others answers</a>
       {{/if}}
-    </li>
+    </tr>
+
 </template>

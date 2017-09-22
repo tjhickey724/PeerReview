@@ -13,6 +13,7 @@ Template.createClass.events({
     console.dir(newclass);
 
     ClassInfo.insert(newclass);
+    Router.go('home');
 
   }
 })
