@@ -26,7 +26,11 @@
     <td> <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a></td>
     <td> {{profile.email}}</td>
     {{#each question in questions student.class_id}}
-    <td> {{numReviews question}}</td>
+    <td> <i>{{answerTime question}}</i><br>
+      {{#if numReviews question}}
+          <b>reviewed {{numReviews question}} answers</b>
+     {{/if}}
+    </td>
     {{/each}}
 
   </tr>

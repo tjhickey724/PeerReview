@@ -16,6 +16,18 @@ Template.showStudent.helpers({
     return Answers.find({createdBy:this.student.student_id})
   },
 
+  answerTime:function(question){
+    console.log("in answerTime");
+    console.dir(['at',question])
+    var a= Answers.findOne({question:question._id,createdBy:this.student.student_id})
+    console.dir(a);
+    if (a)
+      return a.createdAt;
+    else {
+      return "not submitted"
+    }
+  },
+
   questions:function(class_id){
     return Questions.find({class_id:class_id})
   },
