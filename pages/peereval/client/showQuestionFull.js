@@ -21,7 +21,7 @@ Template.showQuestionFull.helpers({
     const ans= Answers.findOne(
       {createdBy:Meteor.userId(),
        question:this._id});
-    console.log(ans);
+    
     return ans; // this could be undefined!
   },
 

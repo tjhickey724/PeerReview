@@ -18,10 +18,14 @@ Template.home.events({
     instance.$("#classcode").val("")
 
     var theClass = ClassInfo.findOne({studentPin:classcode});
-    var sinfo = StudentInfo.findOne({student_id:Meteor.userId()});
     if (!theClass){
-      alert("There is no class with PIN ="+classcode);
-    }else if (sinfo) {
+      alert("There is no class with PIN ="+classcode)
+      return
+    }
+    var sinfo = StudentInfo.findOne(
+           {student_id:Meteor.userId(),
+              class_id:theClass._id})
+    if (sinfo) {
       alert("You are already in that class!");
       return;
     } else {

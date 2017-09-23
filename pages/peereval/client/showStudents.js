@@ -17,10 +17,8 @@ Template.showStudent.helpers({
   },
 
   answerTime:function(question){
-    console.log("in answerTime");
-    console.dir(['at',question])
+
     var a= Answers.findOne({question:question._id,createdBy:this.student.student_id})
-    console.dir(a);
     if (a)
       return a.createdAt;
     else {
@@ -33,6 +31,7 @@ Template.showStudent.helpers({
   },
 
   numReviews:function(question){
+
     var z = {createdBy:this.student.student_id,question:question._id}
     var a = Answers.findOne(z)
     if (a && a.myReviews) {
@@ -56,23 +55,31 @@ Template.studentWork.helpers({
 
   answer:function(question_id){
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
-    return a.answer
+    
+    if (a)
+      return a.answer
+    else {
+      return "not submitted"
+      }
   },
 
   reviews:function(question_id){
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
-    var r = Reviews.find({answer_id:a._id})
-    return r
+    if (a) {
+      var r = Reviews.find({answer_id:a._id})
+      return r
+    } else {
+      return []
+    }
   },
 
   questions:function(class_id){
     var qs = Questions.find({class_id:class_id})
-    console.log(class_id)
-    console.dir(qs.fetch())
     return qs
   },
 
   reviewsByStudent:function(student){
+    // I need to add the class_id to each review!!
     var rs = Reviews.find({createdBy:student.student_id});
     return rs;
   },
