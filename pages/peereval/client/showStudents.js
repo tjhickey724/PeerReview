@@ -91,14 +91,12 @@ Template.studentWork.helpers({
 
 Template.studentReview.helpers({
   testing:function(review){
-    console.dir(review);
     return "this is a test"
   },
   reviewInfo:function(){
-    console.log("in reviewInfo");
+
     var q = Questions.findOne({_id:this.review.question_id})
     var a = Answers.findOne({_id:this.review.answer_id})
-    console.dir(['ri',q,a]);
     return {question:q,answer:a}
   },
 })
