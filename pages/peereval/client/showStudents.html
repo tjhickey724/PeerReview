@@ -13,15 +13,17 @@
     </thead>
     <tbody>
   {{#each student in students class}}
-    {{> showStudent student=student}}
+    {{> showStudent student=student class=class}}
   {{/each}}
     </tbody>
   </table>
+
+
 </template>
 
 <template name="showStudent">
   <tr>
-    <td> {{profile.name}}</td>
+    <td> <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a></td>
     <td> {{profile.email}}</td>
     {{#each question in questions student.class_id}}
     <td> {{numReviews question}}</td>
@@ -29,4 +31,69 @@
 
   </tr>
 
+</template>
+
+<template name="studentWork">
+  <h1> Details on Work of
+      {{profile.rname}}/{{profile.remail}}</h1>
+
+  <h2>Problems Attempted</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr><td>Problem</td><td>Student's Answer</td><td>Reviews of their answer</td></tr>
+    </thead>
+    <tbody>
+  {{#each question in questions class._id}}
+    <tr>
+      <td>
+    <b>{{question.title}}</b>
+    <div class="bg-info" style="white-space: pre-wrap;">{{question.question}}</div>
+     </td>
+     <td>
+    <div class="bg-warning" style="white-space: pre-wrap;">{{answer question._id}}</div>
+    </td>
+    <td>
+    <ul>
+      {{#each review in reviews question._id}}
+        <li> Rating: {{review.rating}}:
+            <div class="bg-warning" style="white-space: pre-wrap;">{{review.review}}</div>
+      </li>
+      {{/each}}
+    </ul>
+  </td>
+</tr>
+  {{/each}}
+</tbody>
+</table>
+
+<h2>Reviews Written</h2>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr><td>Problem</td><td>Answer</td><td>Students Review of the Answer</td></tr>
+  </thead>
+<tbody>
+{{#each review in reviewsByStudent student}}
+
+   {{> studentReview review=review student=student class=class}}
+
+{{/each}}
+</tbody>
+</table>
+
+</template>
+
+<template name="studentReview">
+  <tr>
+    <td>
+      <b>{{reviewInfo.question.title}}</b><br>
+      {{reviewInfo.question.question}}
+    </td>
+    <td>
+     {{reviewInfo.answer.answer}}
+   </td>
+   <td>
+     Rating: {{review.rating}}<br>
+      {{review.review}}
+    </td>
+  </tr>
 </template>
