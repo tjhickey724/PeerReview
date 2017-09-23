@@ -40,7 +40,7 @@
   <h2>Problems Attempted</h2>
   <table class="table table-bordered table-striped">
     <thead>
-      <tr><td>Problem</td><td>Student's Answer</td><td>Reviews of their answer</td></tr>
+      <tr><td>Problem</td><td>Student's Answer and Reviews</td></tr>
     </thead>
     <tbody>
   {{#each question in questions class._id}}
@@ -51,8 +51,7 @@
      </td>
      <td>
     <pre>{{answer question._id}}</pre>
-    </td>
-    <td>
+
     <ul>
       {{#each review in reviews question._id}}
         <li> Rating: {{review.rating}}:
@@ -69,7 +68,7 @@
 <h2>Reviews Written</h2>
 <table class="table table-bordered table-striped">
   <thead>
-    <tr><td>Problem</td><td>Answer</td><td>Students Review of the Answer</td></tr>
+    <tr><td>Problem</td><td>Answer and Review</td></tr>
   </thead>
 <tbody>
 {{#each review in reviewsByStudent student}}
@@ -90,8 +89,7 @@
     </td>
     <td>
      <pre>{{reviewInfo.answer.answer}}</pre>
-   </td>
-   <td>
+     <hr>
      Rating: {{review.rating}}<br>
       {{review.review}}
     </td>
