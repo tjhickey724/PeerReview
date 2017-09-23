@@ -78,10 +78,9 @@ Template.studentWork.helpers({
     return qs
   },
 
-  reviewsByStudent:function(student,class_id){
+  reviewsByStudent:function(student){
     // I need to add the class_id to each review!!
-    var rs = Reviews.find({createdBy:student.student_id,class_id:class_id});
-    console.dir(['rbs',student,class_id,rs.fetch()])
+    var rs = Reviews.find({createdBy:student.student_id});
     return rs;
   },
 
@@ -98,6 +97,12 @@ Template.studentWork.helpers({
 })
 
 Template.studentReview.helpers({
+  isInClass:function(){
+
+    var z =  this.class._id==this.review.class_id;
+    
+    return z;
+  },
   testing:function(review){
     return "this is a test"
   },

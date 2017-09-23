@@ -75,7 +75,7 @@
     <tr><td>Problem</td><td>Answer and Review</td></tr>
   </thead>
 <tbody>
-{{#each review in reviewsByStudent student class._id}}
+{{#each review in reviewsByStudent student}}
 
    {{> studentReview review=review student=student class=class}}
 
@@ -86,6 +86,7 @@
 </template>
 
 <template name="studentReview">
+  {{#if isInClass}}
   <tr>
     <td>
       <b>{{reviewInfo.question.title}}</b><br>
@@ -98,4 +99,5 @@
       {{review.review}}
     </td>
   </tr>
+  {{/if}}
 </template>
