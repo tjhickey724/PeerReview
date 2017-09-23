@@ -100,7 +100,7 @@ Template.studentReview.helpers({
   isInClass:function(){
 
     var z =  this.class._id==this.review.class_id;
-    
+    console.dir(['isInClass',this,z])
     return z;
   },
   testing:function(review){
