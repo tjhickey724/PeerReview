@@ -2,15 +2,21 @@
 
   {{#if profile}}
   <h1>Confirm your Peer Review Profile</h1>
-    Full Name: <input type="text" class="js-name" rows="100%"
+    Registered Name: {{profile.rname}}<br>
+    Registered Email: {{profile.remail}}<br>
+    Account Type: {{profile.accountType}}<br>
+    Preferred Name: <input type="text" class="js-name" rows="100%"
            value="{{profile.name}}"><br>
-    Email: <input type="text" class="js-email" rows="100%"
+    Preferred Email: <input type="text" class="js-email" rows="100%"
            value="{{profile.email}}"><br>
     <button class="js-update">Update/Confirm</button>
   {{else}}
   <h1>Enter your Peer Review Profile Information</h1>
-    Full Name: <input type="text" class="js-name" rows="100%"><br>
-    Email: <input type="text" class="js-email" rows="100%"><br>
+    Registered Name: {{profile.rname}}<br>
+    Registered Email: {{profile.remail}}<br>
+    AccountType: {{profile.accountType}}<br>
+    Preferred Name: <input type="text" class="js-name" rows="100%"><br>
+    Preferred Email: <input type="text" class="js-email" rows="100%"><br>
     <button class="js-submit">Submit</button>
   {{/if}}
 
