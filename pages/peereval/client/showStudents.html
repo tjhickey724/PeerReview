@@ -75,7 +75,7 @@
     <tr><td>Problem</td><td>Answer and Review</td></tr>
   </thead>
 <tbody>
-{{#each review in reviewsByStudent student}}
+{{#each review in reviewsByStudent student class._id}}
 
    {{> studentReview review=review student=student class=class}}
 

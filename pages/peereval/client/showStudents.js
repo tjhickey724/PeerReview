@@ -55,7 +55,7 @@ Template.studentWork.helpers({
 
   answer:function(question_id){
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
-    
+
     if (a)
       return a.answer
     else {
@@ -78,9 +78,9 @@ Template.studentWork.helpers({
     return qs
   },
 
-  reviewsByStudent:function(student){
+  reviewsByStudent:function(student,class_id){
     // I need to add the class_id to each review!!
-    var rs = Reviews.find({createdBy:student.student_id});
+    var rs = Reviews.find({createdBy:student.student_id,class_id:class_id});
     return rs;
   },
 

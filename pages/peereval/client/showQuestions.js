@@ -18,7 +18,7 @@ Template.question_item.helpers({
     if (ans) {
       points = Reviews.find({answer_id:ans._id},{fields:{rating:1}}).fetch();
       points=_.sortBy(_.pluck(points,'rating'),function(x){return - parseInt(x)});
-      console.dir(['points',points]);
+      
       revs={answer:ans,num:ans.myReviews.length,ratings:points}
       return revs;
     } else {

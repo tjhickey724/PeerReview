@@ -1,6 +1,5 @@
 .DS_STORE*
 *~
 movies/*
-*.txt
-public/images
+images
 node_modules

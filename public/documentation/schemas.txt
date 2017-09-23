@@ -1,0 +1,58 @@
+Profiles:
+ accountType:"google"
+ email:"tjhickey@brandeis.edu"
+ id:"viaBpdizJwv4zuQtb"
+ name:"Timothy Hickey"
+ remail:"tjhickey@brandeis.edu"
+ rname:"Timothy Hickey"
+ _id:"BJHSWWmJdCDowETnH"
+
+ClassInfo:
+ createdAt:Fri Sep 22 2017 15:03:20 GMT-0400 (EDT)
+ createdBy:"viaBpdizJwv4zuQtb"
+ name:"CS11a-02 Fall17"
+ studentPin:"1631864"
+ teacherPin:"8355961"
+ _id:"sT6ARqckEunNYjba7"
+
+StudentInfo
+This store the info about each student in each class.
+If a student is in multiple classes they will have a studentinfo obj for each class
+ class_id:"sT6ARqckEunNYjba7"
+ class_name:"CS11a-02 Fall17"
+ createdAt:Fri Sep 22 2017 17:56:36 GMT-0400 (EDT) {}
+ role:"student"
+ student_id:"pyPmjERsCJo6RYMZg"
+ _id:"Dn34BAMRiHzvc9Mup"
+
+Questions
+class_id:"sT6ARqckEunNYjba7"
+createdAt:Fri Sep 22 2017 15:04:50 GMT-0400 (EDT) {}
+createdBy:"viaBpdizJwv4zuQtb"
+points:"2"
+question:"Write the complete Java code for a program, Hello.java, that prints "Hello World!" on the screen when you run it using the command↵> javac Hello.java↵> java Hello↵↵"
+rubric:"2=perfect↵1=minor errors↵0=wrong↵  "
+title:"Hello World"
+_id:"6YjMCPay26eofwmi2"
+
+Both Answers and Questions need to have the classID included in their schema....
+
+Answers
+answer:"public class Hello {↵  public static void main(String[] args){↵    System.out.println("Hello World");↵  }↵}"
+createdAt:Fri Sep 22 2017 15:40:43 GMT-0400 (EDT) {}
+createdBy:"viaBpdizJwv4zuQtb"
+myReviewers: ["hizxyGbqNAhf4B6Lg", "YKGE6Txf4MybCTPet"]
+myReviews: ["L2noz235LzYYWr4v2", "hizxyGbqNAhf4B6Lg"]
+question:"6YjMCPay26eofwmi2"
+userName:"anon"
+_id:"Kuef6fXr52DrLwwgr"
+
+Reviews
+answer_id:"WuYCbC3Pf8Qw4c58n"
+createdAt:Fri Sep 22 2017 21:18:30 GMT-0400 (EDT) {}
+createdBy:"viaBpdizJwv4zuQtb"
+question:"Write the complete Java code for a program, Hello.java, that prints "Hello World!" on the screen when you run it using the command↵> javac Hello.java↵> java Hello↵↵"
+question_id:"6YjMCPay26eofwmi2"
+rating:1
+review:"Almost, but the main method parameters should be String[] args, not String [args]"
+_id:"WPLgieZ4oj97DCzr9"

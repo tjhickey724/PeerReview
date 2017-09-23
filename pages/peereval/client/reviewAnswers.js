@@ -37,7 +37,8 @@ Template.reviewAnswer.events({
        createdBy: Meteor.userId(),
        question: this.q.question,
        question_id: this.q._id,
-       answer_id: this.a._id};
+       answer_id: this.a._id,
+       class_id: this.q.class_id};
 
     // I should send myAnswer to this as a parameter
     myAnswer = Answers.findOne({createdBy:Meteor.userId(),question:this.q._id});

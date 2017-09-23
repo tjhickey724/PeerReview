@@ -21,7 +21,7 @@ Template.showQuestionFull.helpers({
     const ans= Answers.findOne(
       {createdBy:Meteor.userId(),
        question:this._id});
-    
+
     return ans; // this could be undefined!
   },
 
@@ -63,6 +63,7 @@ Template.showQuestionFull.events({
         userName: 'anon',
         myReviews:[],  // list of _id's of students reviewed by this person
         myReviewers:[],
+        class:this.class_id,
       };
     console.dir(answerData);
     const myAnswerId = Answers.insert(answerData);
