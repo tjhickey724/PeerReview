@@ -11,6 +11,7 @@ Next Steps:
 * write a paper on it
 
 Completed Steps
+* fixed a bug showing your answer to a question (but it showed a random answer)
 * add an overview page for orchestration so I can see
   - how many have completed problems and the average rating
   - how many reviews have been written
