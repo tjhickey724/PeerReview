@@ -1,7 +1,7 @@
 Template.reviewAnswers.helpers({
   question: function(){ return this.q.question},
   answers: function(){
-    const answerList = Answers.find({question:this.q._id});
+    var answerList = Answers.find({question:this.q._id});
     return answerList},
 
 
@@ -28,9 +28,9 @@ Template.reviewAnswer.helpers({
 Template.reviewAnswer.events({
   "click .js-submit-review": function(event){
 
-    const rating = $(".js-rate-answer").val();
-    const theReview = $(".js-review-answer").val();
-    const reviewObj =
+    var rating = $(".js-rate-answer").val();
+    var theReview = $(".js-review-answer").val();
+    var reviewObj =
       {rating:parseInt(rating),
        review:theReview,
        createdAt: new Date(),

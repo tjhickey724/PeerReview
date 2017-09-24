@@ -9,7 +9,7 @@ Template.summary.helpers({
 Template.question_summary_item.helpers({
   answers:function(qid){
     var z = Answers.find({question:qid}).count();
-    console.log("answers="+z);
+    
     return z;
   },
 

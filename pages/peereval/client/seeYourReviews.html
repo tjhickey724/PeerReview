@@ -1,25 +1,24 @@
-<template name="seeReviews">
-  <h1>Reviews of your answer</h1>
+<template name="seeYourReviews">
+  <h1>Your Reviews for this question</h1>
 
   {{#if answer}}
+
   <h3>{{answer.q.title}}</h3>
   <pre class="bg-info">
     {{answer.q.question}}
   </pre>
-  <h2>Your answer</h2>
-  <pre class="bg-primary">
-    {{answer.a.answer}}
-  </pre>
 
 
-  <h2>Reviews of your answer by other students</h2>
+
+  <h2>Your Reviews of answers by other students</h2>
   <table class="table table-bordered table-striped">
     <thead>
-      <tr><th>Rating</th><th>Review</th><th>CreatedAt</th></tr>
+      <tr><th>Their Answer</th><th>Your Rating</th><th>Your Review</th><th>CreatedAt</th></tr>
     </thead>
     <tbody>
       {{#each r in reviews}}
         <tr>
+          <td><pre class="bg-info">{{their_answer r.answer_id}}</pre></td>
           <td>{{r.rating}}</td>
           <td><pre>{{r.review}}</pre></td>
           <td>{{r.createdAt}}</td>
@@ -28,7 +27,7 @@
     </tbody>
   </table>
   {{else}}
-  No one has reviewed your answer yet. Please check back later.
+  You haven't reviewed any answers yet. Please review first then check back later.
   {{/if}}
 
 </template>

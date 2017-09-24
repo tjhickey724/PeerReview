@@ -18,7 +18,7 @@ Template.showQuestionFull.helpers({
   title: function(){return this.title},
   question: function(){return this.question},
   answer: function(){
-    const ans= Answers.findOne(
+    var ans= Answers.findOne(
       {createdBy:Meteor.userId(),
        question:this._id});
 
@@ -27,10 +27,10 @@ Template.showQuestionFull.helpers({
 
 
   hasEnoughReviews: function(){
-    const instance = Template.instance();
-    const myAnswerId = instance.state.get('myAnswerId');
+    var instance = Template.instance();
+    var myAnswerId = instance.state.get('myAnswerId');
     if (myAnswerId) {
-      const myAnswer = Answers.findOne(myAnswerId);
+      var myAnswer = Answers.findOne(myAnswerId);
       return myAnswer.myReviews.length>=2;
     } else {
       return false;
@@ -38,7 +38,7 @@ Template.showQuestionFull.helpers({
   },
 
   hasAnswered: function(){
-    const instance = Template.instance();
+    var instance = Template.instance();
     return instance.state.get('myAnswerId');
   },
 
@@ -46,16 +46,16 @@ Template.showQuestionFull.helpers({
 
 Template.showQuestionFull.events({
   "click .js-submit-answer": function(event){
-    const instance = Template.instance();
+    var instance = Template.instance();
     event.preventDefault();
-    const answer = $(".js-student-answer").val();
+    var answer = $(".js-student-answer").val();
     console.log(answer);
     /* the answer object to the question by this user
      * will also contain the list of all other answers reviewed by
      * this user. This will allow us to make sure the user
      * always gets new answers to review, if there are any..
     */
-    const answerData =
+    var answerData =
       { answer:answer,
         question:this._id,
         createdAt:new Date(),
@@ -66,10 +66,10 @@ Template.showQuestionFull.events({
         class:this.class_id,
       };
     console.dir(answerData);
-    const myAnswerId = Answers.insert(answerData);
+    var myAnswerId = Answers.insert(answerData);
     instance.state.set('myAnswerId',myAnswerId);
 
-    const toReview = Answers.findOne(
+    var toReview = Answers.findOne(
       {question:this._id}
     )
     if (toReview)
