@@ -1,0 +1,37 @@
+<template name="summary">
+<h1>Summary of Activity on {{class.name}}</h1>
+
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <td>Problem</td>
+      <td>Number Completed</td>
+      <td>Reviews written</td>
+      <td>Average Score</td>
+    </tr>
+  </thead>
+  <tbody>
+
+  {{#each question in questions class._id}}
+  {{> question_summary_item q=question}}
+  {{/each}}
+  </tbody>
+</table>
+</template>
+
+
+<template name="question_summary_item">
+    <tr>
+      <td> <a class="btn btn-small btn-warning" href="/questionsummary/{{q._id}}">{{q.title}}</a>
+      </td>
+      <td> {{answers q._id}}</td>
+      <td> {{reviews q._id}}</td>
+      <td> {{ratings q._id}}</td>
+      {{#if false}}
+      <a class="btn btn-small btn-info" href="/seeReviews/{{q._id}}">See reviews of your answer</a>
+      <a class="btn btn-small btn-primary" href="/reviewAnswers/{{q._id}}">Review others answers</a>
+      {{/if}}
+    </tr>
+
+</template>

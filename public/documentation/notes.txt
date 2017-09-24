@@ -1,0 +1,14 @@
+9/24/2017
+Next steps:
+* add an overview page for orchestration so I can see
+  - how many have completed problems and the average rating
+  - how many reviews have been written
+  - what answers have been submitted and how they have been reviewed
+* allow students to see all of their work (e.g. reviews)
+* remove all ES6 code (const, let and =>)
+* switch to meteor methods
+* add publications (so you only download code from your class or classes)
+* add schema checking/validation to meteor methods
+* get other faculty to use it...
+* experiment with calibrated peer review
+* write a paper on it
