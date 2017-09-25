@@ -1,9 +1,9 @@
 <template name="questionsummary">
-  <h1>Question Summary for {{title}}</h1>
+  <h1>All Current Answers and Reviews<br> for the {{title}} Question</h1>
   <pre class="bg-primary">{{question}}</pre>
-  <ul>
+<ol>
   {{#each answer in answers _id}}
-    <li> <pre class="bg_info">{{answer.answer}}</pre>
+    <li><pre class="bg_info">{{answer.answer}}</pre>
       <ul>
         {{#each review in reviews answer._id}}
           <li class="bg-warning">[{{review.rating}}]: {{review.review}}</li>
@@ -11,5 +11,5 @@
       </ul>
     </li>
   {{/each}}
-  </ul>
+</ol>
 </template>

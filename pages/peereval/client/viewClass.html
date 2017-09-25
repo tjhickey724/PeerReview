@@ -5,9 +5,10 @@
   <a class="btn btn-small btn-primary" href="/createQuestion/{{class._id}}">Create a new Question</a>
   <button class="btn btn-small btn-info js-showStudentPin">Show Student Pin</button>
   <button class="btn btn-small btn-info js-showTeacherPin">Show TA Pin</button>
-  <a class="btn btn-small btn-info" href="/summary/{{class._id}}">Summary</a>
+
   <a class="btn btn-small btn-info" href="/showStudents/{{class._id}}">Show Student Info</a>
   {{/if}}
+  <a class="btn btn-small btn-info" href="/summary/{{class._id}}">Summary</a>
 
     {{> showQuestions class=class}}
 </template>
