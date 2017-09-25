@@ -20,7 +20,7 @@ Template.reviewAnswer.helpers({
 
   points: function(){
 
-    return(_.range(parseInt(this.q.points)+1));
+    return(_.range(parseInt(this.q.points),-1,-1));
   },
 
 })

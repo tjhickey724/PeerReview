@@ -17,12 +17,17 @@
     </div>
     <div class="col-md-6">
       <pre class="bg-primary">{{q.rubric}}</pre>
-  Grade: out of {{points}} points:
-  <select class="js-rate-answer">
-    {{#each point in points}}
-       <option>{{point}}</option>
-    {{/each}}
-  </select>
+  Grade: out of {{q.points}} points:
+  <br>
+    <select class="js-rate-answer">
+      {{#each point in points}}
+        <option>{{point}}</option>
+      {{/each}}
+    </select>
+    <br>
+
+
+
   <br>
   Comments:
   <br>
