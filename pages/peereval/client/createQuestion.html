@@ -1,14 +1,24 @@
 <template name="createQuestion">
   <h1>Create a new Peer Evaluation Question</h1>
   Short Description of the Question:<br>
-  <input type="text" class="js-title">
+  <input type="text" class="js-title bg-info">
   <br/>
-  <textarea name="description" class="textarea js-question-description"
+  Pick a Problem Set for this question:
+  <select class="js-problem-set bg-info">
+    {{#each ps in problemsets}}
+    <option value="{{ps._id}}">{{ps.name}}</option>
+    {{/each}}
+  </select>
+  <br>
+  Create a new ProblemSet: <input type="text" class="js-new-ps bg-info">
+  <button class="btn btn-small btn-info js-add-ps">Create</button>
+  <br>
+  <textarea name="description" class="textarea bg-info js-question-description"
        cols="100%" rows="4"></textarea>
   <br>
   <h2>Rubric</h2>
-  Number of points: <input type="text" class="js-points" value="2"><br>
-  <textarea name="rubric" class="textarea js-rubric" rows="4" cols="100%">
+  Number of points: <input type="text" class="bg-info js-points" value="2"><br>
+  <textarea name="rubric" class="textarea bg-info js-rubric" rows="4" cols="100%">
 2=perfect
 1=minor errors
 0=wrong

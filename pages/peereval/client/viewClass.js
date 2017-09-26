@@ -16,3 +16,9 @@ Template.viewClass.events({
   },
 
 })
+
+Template.showProblemSets.helpers({
+  problemsets(){
+    return ProblemSets.find({class_id:this.class._id});
+  }
+})

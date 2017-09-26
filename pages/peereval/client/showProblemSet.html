@@ -1,0 +1,16 @@
+<template name="showProblemSet">
+  <h1>Problem Set: {{problemset.name}}</h1>
+
+  <table class="table table-bordered table-striped">
+    <tbody>
+    {{#each question in questions}}
+    <tr>
+      <td><a class="btn btn-sm btn-info" href="/showQuestionFull/{{question._id}}">{{question.title}}</a></td>
+      <td>{{question.createdAt}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+  </table>
+
+
+</template>

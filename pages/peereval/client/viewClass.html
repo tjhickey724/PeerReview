@@ -9,6 +9,23 @@
   <a class="btn btn-small btn-info" href="/showStudents/{{class._id}}">Show Student Info</a>
   {{/if}}
   <a class="btn btn-small btn-info" href="/summary/{{class._id}}">Summary</a>
-
+    {{> showProblemSets class=class}}
+    
     {{> showQuestions class=class}}
+</template>
+
+
+<template name="showProblemSets">
+  <h1>Problem Sets for {{class.name}}</h1>
+  <table class="table table-bordered table-striped">
+    <tbody>
+      {{#each ps in problemsets}}
+        <tr>
+          <td>
+            <a class="btn btn-small btn-info" href="/showProblemSet/{{ps._id}}">{{ps.name}}</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>
