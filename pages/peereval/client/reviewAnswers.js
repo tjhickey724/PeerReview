@@ -14,6 +14,11 @@ Template.reviewAnswers.events({
 })
 
 Template.reviewAnswer.helpers({
+  otherReviews:function(aid){
+    var reviews = Reviews.find({answer_id:aid});
+    return reviews
+  },
+
   hasAnswer:function(a){
     return a
   },
