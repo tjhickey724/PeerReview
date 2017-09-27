@@ -49,7 +49,7 @@ Template.showQuestionFull.events({
     var instance = Template.instance();
     event.preventDefault();
     var answer = $(".js-student-answer").val();
-    console.log(answer);
+
     /* the answer object to the question by this user
      * will also contain the list of all other answers reviewed by
      * this user. This will allow us to make sure the user
@@ -65,7 +65,7 @@ Template.showQuestionFull.events({
         myReviewers:[],
         class:this.class_id,
       };
-    console.dir(answerData);
+
     var myAnswerId = Answers.insert(answerData);
     instance.state.set('myAnswerId',myAnswerId);
 

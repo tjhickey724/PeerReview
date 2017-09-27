@@ -1,10 +1,13 @@
 Template.showQuestions.helpers({
   questions: function(id){
     return Questions.find({class_id:id},{sort:{createdAt:-1}})
-  },
+  }
 })
 
 Template.question_item.helpers({
+  owns_question: function(q) {
+    return q.createdBy==Meteor.userId()
+  },
   answer: function(){
     return Answers.findOne(
       {question:this.q._id,
@@ -18,7 +21,7 @@ Template.question_item.helpers({
     if (ans) {
       points = Reviews.find({answer_id:ans._id},{fields:{rating:1}}).fetch();
       points=_.sortBy(_.pluck(points,'rating'),function(x){return - parseInt(x)});
-      
+
       revs={answer:ans,num:ans.myReviews.length,ratings:points}
       return revs;
     } else {

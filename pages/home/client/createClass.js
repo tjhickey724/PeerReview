@@ -10,7 +10,6 @@ Template.createClass.events({
        studentPin:studentPin,
        teacherPin:teacherPin
       };
-    console.dir(newclass);
 
     ClassInfo.insert(newclass);
     Router.go('home');

@@ -6,7 +6,10 @@
     {{#each question in questions}}
     <tr>
       <td><a class="btn btn-sm btn-info" href="/showQuestionFull/{{question._id}}">{{question.title}}</a></td>
-      <td>{{question.createdAt}}</td>
+      <td>{{question.createdAt}}
+        {{#if owns_question question.createdBy}}-- <a href="/createQuestion/{{question.class_id}}/{{question._id}}">Edit</a>
+        {{/if}} 
+    </td>
     </tr>
     {{/each}}
     </tbody>

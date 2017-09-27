@@ -30,6 +30,7 @@ class_id:"sT6ARqckEunNYjba7"
 createdAt:Fri Sep 22 2017 15:04:50 GMT-0400 (EDT) {}
 createdBy:"viaBpdizJwv4zuQtb"
 points:"2"
+problemset_id:"f7d8s7f98ds9f8ds"
 question:"Write the complete Java code for a program, Hello.java, that prints "Hello World!" on the screen when you run it using the command↵> javac Hello.java↵> java Hello↵↵"
 rubric:"2=perfect↵1=minor errors↵0=wrong↵  "
 title:"Hello World"

@@ -1,7 +1,7 @@
 <template name="createQuestion">
   <h1>Create a new Peer Evaluation Question</h1>
   Short Description of the Question:<br>
-  <input type="text" class="js-title bg-info">
+  <input type="text" class="js-title bg-info" value="{{question.title}}">
   <br/>
   Pick a Problem Set for this question:
   <select class="js-problem-set bg-info">
@@ -14,15 +14,12 @@
   <button class="btn btn-small btn-info js-add-ps">Create</button>
   <br>
   <textarea name="description" class="textarea bg-info js-question-description"
-       cols="100%" rows="4"></textarea>
+       cols="100%" rows="4">{{question.question}}</textarea>
   <br>
   <h2>Rubric</h2>
-  Number of points: <input type="text" class="bg-info js-points" value="2"><br>
+  Number of points: <input type="text" class="bg-info js-points" value="{{question.points}}"><br>
   <textarea name="rubric" class="textarea bg-info js-rubric" rows="4" cols="100%">
-2=perfect
-1=minor errors
-0=wrong
-  </textarea>
+{{question.rubric}}  </textarea>
   <br>
   <button class="js-submit-question">Submit</button>
 </template>

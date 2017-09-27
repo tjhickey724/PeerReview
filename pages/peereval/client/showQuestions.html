@@ -20,7 +20,11 @@
 
 <template name="question_item">
     <tr>
-      <td> <a class="btn btn-small btn-warning" href="/showQuestionFull/{{q._id}}">{{q.title}}</a>
+      <td> <a class="btn btn-small btn-warning" href="/showQuestionFull/{{q._id}}">
+           {{q.title}}</a>
+           {{#if owns_question q}}
+           <a href="/createQuestion/{{q.class_id}}/{{q._id}}">Edit</a>
+           {{/if}}
       </td>
       <td> {{#if reviews.answer}}{{reviews.answer.createdAt}}{{else}}Not completed yet{{/if}}</td>
       <td> {{reviews.num}}</td>

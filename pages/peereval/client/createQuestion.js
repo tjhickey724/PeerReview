@@ -1,7 +1,8 @@
 Template.createQuestion.helpers({
   problemsets(){
-    console.dir(this);
-    return ProblemSets.find({class_id:this.class._id})
+    var z = {class_id:this.class._id};
+    var w = ProblemSets.find(z);
+    return w
   },
 
 })
@@ -21,7 +22,6 @@ Template.createQuestion.events({
     var points = instance.$(".js-points").val();
     var rubric = instance.$(".js-rubric").val();
     var problemset_id = instance.$(".js-problem-set").val();
-    console.log("problemset_id = '"+ problemset_id+ "'")
 
 
     var dbentry =
@@ -34,7 +34,11 @@ Template.createQuestion.events({
        createdAt:(new Date()),
        createdBy:Meteor.userId()}
 
-    Questions.insert(dbentry);
+
+    if (this.question.question)
+      Questions.update(this.question._id,dbentry)
+    else
+      Questions.insert(dbentry);
     Router.go('/viewClass/'+this.class._id);
   }
 })
