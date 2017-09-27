@@ -1,5 +1,7 @@
 9/24/2017
 Next Steps:
+* after filtering out students with more than minimal reviews,
+  make a random selection from the rest, this will better balance the reviews
 * allow students to see other reviews as they make their own review
 * allow students to edit their reviews
 * add the average score to each answer
