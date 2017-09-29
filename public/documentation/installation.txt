@@ -1,0 +1,11 @@
+Installation Guide
+
+Scaling
+This uses the meteorhacks:cluster package
+so when we start it up you need to specify the number of cores to use:
+export CLUSTER_WORKERS_COUNT=2
+ or
+export CLUSTER_WORKERS_COUNT=auto
+In the bash shell before starting with
+
+% meteor run
