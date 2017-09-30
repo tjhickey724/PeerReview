@@ -19,6 +19,15 @@ Template.reviewAnswer.helpers({
     return reviews
   },
 
+  selected:function(point,val){
+    console.log("in selected "+point+" "+val+ " "+(point==val));
+    if (point==val)
+      return "selected"
+    else {
+        return ""
+    }
+  },
+
   hasAnswer:function(a){
     return a
   },
@@ -32,6 +41,7 @@ Template.reviewAnswer.helpers({
 
 Template.reviewAnswer.events({
   "click .js-submit-review": function(event){
+
 
     var rating = $(".js-rate-answer").val();
     var theReview = $(".js-review-answer").val();
@@ -47,10 +57,14 @@ Template.reviewAnswer.events({
 
     // I should send myAnswer to this as a parameter
     myAnswer = Answers.findOne({createdBy:Meteor.userId(),question:this.q._id});
-    Answers.update(myAnswer._id,{$push:{myReviews:this.a.createdBy}});
 
-    Answers.update(this.a._id,{$push:{myReviewers:Meteor.userId()}});
-    z = Reviews.insert(reviewObj);
+    if (this.r._id) {
+      Reviews.update(this.r._id,reviewObj);
+    } else {
+      Answers.update(myAnswer._id,{$push:{myReviews:this.a.createdBy}});
+      Answers.update(this.a._id,{$push:{myReviewers:Meteor.userId()}});
+      z = Reviews.insert(reviewObj);
+    }
 
     Router.go('/showQuestionFull/'+this.q._id);
     //updateToReview();

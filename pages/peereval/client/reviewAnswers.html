@@ -33,14 +33,14 @@
     <h2>Your Review</h2>
     <select class="js-rate-answer">
       {{#each point in points}}
-        <option>{{point}}</option>
+        <option {{selected point r.rating}}>{{point}}</option>
       {{/each}}
     </select>
     out of {{q.points}} points
     <br>
     If you don't give full credit, then explain why in the comment box below.
   <br>
-  <textarea class="js-review-answer form-control bg-success" rows="5"></textarea>
+  <textarea class="js-review-answer form-control bg-success" rows="5">{{r.review}}</textarea>
   <br>
   <h2>Rubric</h2>
   <pre class="bg-primary">{{q.rubric}}</pre>
