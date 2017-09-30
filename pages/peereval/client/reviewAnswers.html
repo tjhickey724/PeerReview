@@ -1,4 +1,11 @@
 <template name="reviewAnswers">
+
+  {{> reviewAnswer a=a q=q r=r}}
+</template>
+
+
+
+<template name="reviewAnswer">
   <h1>{{q.title}}</h1>
   <h2>Question</h2>
   <div class="bg-danger">
@@ -6,12 +13,6 @@
     </i>
   </div>
   <hr>
-  {{> reviewAnswer a=a q=q r=r}}
-</template>
-
-
-
-<template name="reviewAnswer">
   {{# if a}}
   Please give a grade and write a comment
   explaining what was wrong and what was right with this attempted answer

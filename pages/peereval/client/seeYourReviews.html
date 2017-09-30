@@ -25,7 +25,7 @@
     <tbody>
       {{#each r in reviews}}
         <tr>
-          <td><pre class="bg-info">{{their_answer r.answer_id}}</pre></td>
+          <td><div  style="white-space: pre-wrap;">{{their_answer r.answer_id}}</div></td>
           <td>{{r.rating}}</td>
           <td> [{{other_reviews r.answer_id}}] </td>
           <td><div  style="white-space: pre-wrap;">{{r.review}}</div></td>
