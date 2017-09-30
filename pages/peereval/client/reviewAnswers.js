@@ -41,7 +41,7 @@ Template.reviewAnswer.helpers({
 
 Template.reviewAnswer.events({
   "click .js-submit-review": function(event){
-
+    console.dir(this);
 
     var rating = $(".js-rate-answer").val();
     var theReview = $(".js-review-answer").val();
