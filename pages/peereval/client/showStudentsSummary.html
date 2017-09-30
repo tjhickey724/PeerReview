@@ -1,0 +1,31 @@
+<template name="showStudentsSummary">
+  <h1>Student Info for <a href="/viewClass/{{class._id}}">{{class.name}}</a></h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Answers Submitted/{{numQuestions class}}</td>
+          <td>Average Review (%)</td>
+          <td>Reviews/Answer Submitted</td>
+      </tr>
+    </thead>
+    <tbody>
+  {{#each student in students class}}
+    {{> showStudentSummary student=student class=class}}
+  {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="showStudentSummary">
+  <tr>
+    <td> <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a></td>
+    <td> {{profile.email}}</td>
+    <td> {{numAnswers}}</td>
+    <td>{{avgReviews}} </td>
+    <td>{{numReviewsTotal}}</td>
+  </tr>
+
+</template>

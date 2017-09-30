@@ -4,7 +4,7 @@ Template.showStudents.helpers({
   },
   questions:function(theClass){
     return Questions.find({class_id:theClass._id})
-  }
+  },
 })
 
 Template.showStudent.helpers({
@@ -20,14 +20,14 @@ Template.showStudent.helpers({
 
     var a= Answers.findOne({question:question._id,createdBy:this.student.student_id})
     if (a)
-      return a.createdAt;
+      return "submitted at " + a.createdAt;
     else {
       return "not submitted"
     }
   },
 
   questions:function(class_id){
-    return Questions.find({class_id:class_id})
+    return Questions.find({class_id:class_id},{sort:{createdAt:-1}})
   },
 
   numReviews:function(question){
@@ -53,6 +53,8 @@ Template.studentWork.helpers({
     return Answers.find({createdBy:this.student.student_id})
   },
 
+
+
   answer:function(question_id){
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
 
@@ -74,9 +76,10 @@ Template.studentWork.helpers({
   },
 
   questions:function(class_id){
-    var qs = Questions.find({class_id:class_id})
+    var qs = Questions.find({class_id:class_id},{sort:{createdAt:-1}})
     return qs
   },
+
 
   reviewsByStudent:function(student){
     // I need to add the class_id to each review!!
