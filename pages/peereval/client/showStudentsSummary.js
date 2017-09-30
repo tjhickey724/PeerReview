@@ -1,6 +1,14 @@
+Template.showStudentsSummary.onCreated(function() {
+  this.state = new ReactiveDict();
+  this.state.setDefault({
+    sortOn: {name:1},
+  });
+});
+
 Template.showStudentsSummary.helpers({
   students:function(theClass){
-    return StudentInfo.find({class_id:theClass._id},{sort:{avgReview:-1}});
+    var instance = Template.instance();
+    return StudentInfo.find({class_id:theClass._id},{sort:instance.state.get('sortOn')});
   },
   questions:function(theClass){
     return Questions.find({class_id:theClass._id})
@@ -13,7 +21,23 @@ Template.showStudentsSummary.helpers({
 Template.showStudentsSummary.events({
   "click #js-update"(event,instance){
     Meteor.call('update_summary',this.class._id)
-  }
+  },
+
+  "click #js-ansSubmitted"(event,instance){
+    console.log("in ansSubmitted")
+    instance.state.set('sortOn',{numAnswers:-1})
+  },
+
+  "click #js-avgReview"(event,instance){
+    instance.state.set('sortOn',{avgReview:-1})
+  },
+
+  "click #js-ansReviewed"(event,instance){
+    instance.state.set('sortOn',{numReviewedAnswers:-1})
+  },
+
+
+
 })
 
 Template.showStudentSummaryCached.helpers({

@@ -1,15 +1,16 @@
 <template name="showStudentsSummary">
   <h1>Student Info for <a href="/viewClass/{{class._id}}">{{class.name}}</a></h1>
   <button id="js-update">Update Student Info</button>
+  <br>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-          <td>Name</td>
-          <td>Email</td>
-          <td>Answers Submitted/{{numQuestions class}}</td>
-          <td>Answers reviewed</td>
-          <td>Average Review (%)</td>
-          <td>Reviews/Answer Submitted</td>
+          <td >Name</td>
+          <td id="js-email">Email</td>
+          <td id="js-ansSubmitted">Answers Submitted/{{numQuestions class}}</td>
+          <td id="js-ansReviewed">Answers reviewed</td>
+          <td id="js-avgReview">Average Review (%)</td>
+          <td id="js-revSubmitted">Reviews/Answer Submitted</td>
       </tr>
     </thead>
     <tbody>
