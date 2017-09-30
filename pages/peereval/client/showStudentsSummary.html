@@ -1,22 +1,34 @@
 <template name="showStudentsSummary">
   <h1>Student Info for <a href="/viewClass/{{class._id}}">{{class.name}}</a></h1>
-
+  <button id="js-update">Update Student Info</button>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
           <td>Name</td>
           <td>Email</td>
           <td>Answers Submitted/{{numQuestions class}}</td>
+          <td>Answers reviewed</td>
           <td>Average Review (%)</td>
           <td>Reviews/Answer Submitted</td>
       </tr>
     </thead>
     <tbody>
   {{#each student in students class}}
-    {{> showStudentSummary student=student class=class}}
+    {{> showStudentSummaryCached student=student class=class}}
   {{/each}}
     </tbody>
   </table>
+</template>
+
+<template name="showStudentSummaryCached">
+  <tr>
+    <td> <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a></td>
+    <td> {{profile.email}}</td>
+    <td> {{student.numAnswers}}</td>
+    <td> {{student.numReviewedAnswers}}</td>
+    <td>{{student.avgReview}} </td>
+    <td>{{student.numReviews}}</td>
+  </tr>
 </template>
 
 <template name="showStudentSummary">

@@ -1,10 +1,15 @@
 9/24/2017
-This is for quick ideas, but everything has been moved to zenhub 
+This is for quick ideas, but everything has been moved to zenhub
 
 Next Steps:
+* I'm going to store summary information about each student in a class
+  in their StudentInfo document, and have a meteor method that can
+  update this. This will allow me to sort and filter students to see
+  who is doing well and who needs help...
 
 
 Completed Steps
+* 9/20 v1.1  created better summary page ...
 * 9/27 after filtering out students with more than minimal reviews,
   make a random selection from the rest, this will better balance the reviews
 * 9/26 allow students to see other reviews as they make their own review

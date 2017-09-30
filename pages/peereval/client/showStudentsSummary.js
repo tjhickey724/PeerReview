@@ -1,6 +1,6 @@
 Template.showStudentsSummary.helpers({
   students:function(theClass){
-    return StudentInfo.find({class_id:theClass._id});
+    return StudentInfo.find({class_id:theClass._id},{sort:{avgReview:-1}});
   },
   questions:function(theClass){
     return Questions.find({class_id:theClass._id})
@@ -8,6 +8,18 @@ Template.showStudentsSummary.helpers({
   numQuestions:function(theClass){
     return Questions.find({class_id:theClass._id}).count()
   }
+})
+
+Template.showStudentsSummary.events({
+  "click #js-update"(event,instance){
+    Meteor.call('update_summary',this.class._id)
+  }
+})
+
+Template.showStudentSummaryCached.helpers({
+  profile:function(){
+    var profile = Profiles.findOne({id:this.student.student_id});
+    return profile},
 })
 
 Template.showStudentSummary.helpers({
