@@ -44,14 +44,14 @@ Template.reviewAnswer.events({
     Router.go("/showQuestionFull/"+this.q._id)
   },
 
-  
+
   "click .js-submit-review": function(event){
     console.dir(this);
 
     var rating = $(".js-rate-answer").val();
     var theReview = $(".js-review-answer").val();
     $(".js-review-answer").val("");
-    $(".js-rate-answer").val(2);
+    $(".js-rate-answer").val(this.q.points);
 
     var reviewObj =
       {rating:parseInt(rating),

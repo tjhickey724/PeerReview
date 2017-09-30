@@ -8,6 +8,10 @@ so when we start it up you need to specify the number of cores to use:
 % export CLUSTER_WORKERS_COUNT=2
  or
 % export CLUSTER_WORKERS_COUNT=auto
+and test with
+% echo $CLUSTER_WORKERS_COUNT
+
+
 In the bash shell before starting with
 
 % ROOT_URL="http://gracehopper.cs-i.brandeis.edu:3500" meteor run --port 3500
