@@ -1,5 +1,5 @@
 Meteor.startup(function(){
   console.log("starting up the client!");
 
-  //Meteor.absoluteUrl.defaultOptions.rootUrl = 'http://gracehopper.cs-i.brandeis.edu:3500/';
+  Meteor.absoluteUrl.defaultOptions.rootUrl = 'http://gracehopper.cs-i.brandeis.edu:3500/';
 });
