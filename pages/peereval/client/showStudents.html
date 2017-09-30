@@ -20,34 +20,50 @@
 </template>
 
 <template name="showStudent">
-  <tr>
-    <td> <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a></td>
-    <td> {{profile.email}}</td>
-    {{#each question in questions student.class_id}}
-    <td> <b>{{question.title}}</b><br><i>{{answerTime question}}</i><br>
-      {{#if numReviews question}}
-          <b>reviewed {{numReviews question}}</b>
-     {{/if}}
-    </td>
-    {{/each}}
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <td>Question</td>
+        <td>Submission Date/Time</td>
+        <td>Ratings</td>
+        <td>Average Rating (%)</td>
+        <td>Review submitted</td>
+      </tr>
+    </thead>
 
-  </tr>
+    <tbody>
+    {{#each question in questions student.class_id}}
+    <tr>
+      <td> <b>{{question.title}}</b></td>
+      <td><i>{{answerTime question}}</i></td>
+      <td>[{{#each r in reviews question._id}}{{r.rating}} {{/each}}]
+        out of {{question.points}}</td>
+      <td>
+         {{avgReview question._id}}
+      </td>
+      <td>{{#if numReviews question}}
+          <b>reviewed {{numReviews question}}</b>
+          {{else}}
+          "no reviews completed"
+          {{/if}}
+        </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
 
 </template>
 
 <template name="studentWork">
   <h1> Details on the Work of<br>
-      {{profile.rname}}/{{profile.remail}}<br> aka {{profile.name}}/{{profile.email}}
+      {{profile.rname}}/{{profile.remail}}
       <br> in {{class.name}}</h1>
 
-      <table class="table table-bordered table-striped">
-
-        <tbody>
+   <h1>Overview</h1>
         {{> showStudent student=student class=class}}
-        </tbody>
-      </table>
 
-  <h2>Problems Attempted</h2>
+
+  <h2>Details on Problems Attempted</h2>
   <table class="table table-bordered table-striped">
     <thead>
       <tr><td>Problem</td><td>Student's Answer and Reviews</td></tr>
@@ -57,15 +73,18 @@
     <tr>
       <td>
     <b>{{question.title}}</b>
-    <div class="bg-info" style="white-space: pre-wrap;">{{question.question}}</div>
+    <div  style="white-space: pre-wrap;">{{question.question}}</div>
      </td>
-     <td>
-    <pre>{{answer question._id}}</pre>
+     <td >
+    <pre class="bg-info">{{answer question._id}}</pre>
 
     <ul>
       {{#each review in reviews question._id}}
-        <li> Rating: {{review.rating}}:
-            <div class="bg-warning" style="white-space: pre-wrap;">{{review.review}}</div>
+        <li >
+          <div class="bg-warning">
+            Rating: {{review.rating}}:
+            <div  style="white-space: pre-wrap;">{{review.review}}</div>
+          </div>
       </li>
       {{/each}}
     </ul>
@@ -75,7 +94,7 @@
 </tbody>
 </table>
 
-<h2>Reviews Written</h2>
+<h2>Details on Reviews Written</h2>
 <table class="table table-bordered table-striped">
   <thead>
     <tr><td>Problem</td><td>Answer and Review</td></tr>
@@ -98,11 +117,13 @@
       <b>{{reviewInfo.question.title}}</b><br>
       {{reviewInfo.question.question}}
     </td>
-    <td>
+    <td >
      <pre>{{reviewInfo.answer.answer}}</pre>
      <hr>
+     <div class="bg-info">
      Rating: {{review.rating}}<br>
       {{review.review}}
+    </div>
     </td>
   </tr>
   {{/if}}

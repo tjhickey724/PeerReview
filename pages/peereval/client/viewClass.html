@@ -1,6 +1,8 @@
 <template name="viewClass">
   <h1>{{class.name}}</h1>
 
+
+
   {{#if owns_class class}}
   <a class="btn btn-small btn-primary" href="/createQuestion/{{class._id}}">Create a new Question</a>
   <button class="btn btn-small btn-info js-showStudentPin">Show Student Pin</button>
@@ -9,6 +11,8 @@
   <a class="btn btn-small btn-info" href="/showStudentsSummary/{{class._id}}">Show Student Info</a>
   {{/if}}
   <a class="btn btn-small btn-info" href="/summary/{{class._id}}">Summary</a>
+
+    <a class="btn btn-small btn-info" href="/studentWork/{{student_id class}}/{{class._id}}"> Details</a>
     {{> showProblemSets class=class}}
 
     {{> showQuestions class=class}}

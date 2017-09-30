@@ -7,6 +7,11 @@ Template.seeYourReviews.helpers({
     return a.answer;
   },
 
+  other_reviews: function(aid){
+    var rs = Reviews.find({answer_id:aid,createdBy:{$ne:Meteor.userId()}}).fetch();
+    return _.pluck(rs,'rating');
+  },
+
   answer: function(){
     if (!this.reviews[0])
       return undefined;

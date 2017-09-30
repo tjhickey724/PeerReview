@@ -39,7 +39,34 @@ Template.showStudent.helpers({
     } else {
       return 0;
     }
-  }
+  },
+
+  reviews:function(question_id){
+    var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
+    if (a) {
+      var r = Reviews.find({answer_id:a._id})
+      return r
+    } else {
+      return []
+    }
+  },
+
+  avgReview:function(question_id){
+    var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
+    if (!a) return  0.0;
+    var rs;
+
+    rs = Reviews.find({answer_id:a._id}).fetch()
+    if (rs.length==0){
+      return 0.0;
+    }
+    var sum=0.0;
+    rs.forEach(function(r){sum = sum + r.rating})
+    var avg = (sum/rs.length*100).toFixed(2);
+    return avg;
+  },
+
+
 
 })
 

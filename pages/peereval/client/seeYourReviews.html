@@ -16,6 +16,7 @@
       <tr>
         <th>Their Answer</th>
         <th>Your Rating</th>
+        <th>Others Ratings</th>
         <th>Your Review</th>
         <th>CreatedAt</th>
         <th>Edit</th>
@@ -26,7 +27,8 @@
         <tr>
           <td><pre class="bg-info">{{their_answer r.answer_id}}</pre></td>
           <td>{{r.rating}}</td>
-          <td><pre>{{r.review}}</pre></td>
+          <td> [{{other_reviews r.answer_id}}] </td>
+          <td><div  style="white-space: pre-wrap;">{{r.review}}</div></td>
           <td>{{r.createdAt}}</td>
           <td>
             <a href="/reviewAnswer/{{r.question_id}}/{{r.answer_id}}/{{r._id}}">
