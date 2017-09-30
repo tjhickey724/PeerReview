@@ -40,11 +40,19 @@ Template.reviewAnswer.helpers({
 })
 
 Template.reviewAnswer.events({
+  "click .js-back"(event,instance){
+    Router.go("/showQuestionFull/"+this.q._id)
+  },
+
+  
   "click .js-submit-review": function(event){
     console.dir(this);
 
     var rating = $(".js-rate-answer").val();
     var theReview = $(".js-review-answer").val();
+    $(".js-review-answer").val("");
+    $(".js-rate-answer").val(2);
+
     var reviewObj =
       {rating:parseInt(rating),
        review:theReview,
@@ -66,7 +74,7 @@ Template.reviewAnswer.events({
       z = Reviews.insert(reviewObj);
     }
 
-    Router.go('/showQuestionFull/'+this.q._id);
+    Router.go('/reviewAnswers/'+this.q._id);
     //updateToReview();
   }
 })

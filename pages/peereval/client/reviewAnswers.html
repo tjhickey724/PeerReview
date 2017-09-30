@@ -49,31 +49,12 @@
 </div>
     </div>
 
-  <button class="js-submit-review btn btn-lg btn-warning">Submit Review</button>
+  <button class="js-submit-review btn btn-lg btn-warning">Submit and Continue Reviewing</button>
+  <button class="js-back btn btn-lg btn-warning">Back</button>
   <br><br><br><br>
   <br>
  {{else}}
     <hr><hr>
     <h2>You have reviewed all available answers. Please try again later.</h2>
  {{/if}}
-</template>
-
-
-
-<template name="reviewAnswersOLD">
-  Please select an answer to review:
-  <ul>
-    {{#each answer in answers}}
-    {{> answerLink answer=answer}}
-    {{/each}}
-  </ul>
-  <p>{{q.title}}<br>{{q.question}}</p>
-  <pre>{{a.answer}}</pre>
-  {{#if selected}}
-  {{> reviewAnswer answer = selected}}
-  {{/if}}
-</template>
-
-<template name="answerLink">
-  <li> Answer: <pre>{{answer.answer}}</pre></li>
 </template>
