@@ -64,7 +64,9 @@ Template.reviewAnswer.events({
        class_id: this.q.class_id};
 
     // I should send myAnswer to this as a parameter
-    myAnswer = Answers.findOne({createdBy:Meteor.userId(),question:this.q._id});
+    myAnswer =
+       Answers.findOne(
+        {createdBy:Meteor.userId(),question:this.q._id},{reactive:false});
 
     if (this.r._id) {
       Reviews.update(this.r._id,reviewObj);

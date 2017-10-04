@@ -3,6 +3,10 @@ New Idea: show the list of all answers and let the
 user pick the one they want to answer. But don't
 add links if they've already answered it, or it is their own.
 This means I don't have to generate a new answer for them to review
+
+THIS HAS A BUG IF SOMEONE BACKS INTO IT.... FIX THAT BUG!!
+myAnswerId should only be undefined if they haven't tried to solve
+this problem yet!!
 */
 
 
