@@ -2,12 +2,12 @@
   <h1>Reviews of your answer</h1>
 
   {{#if answer}}
-  <h3>{{answer.q.title}}</h3>
+  <h3>Question: {{answer.q.title}}</h3>
   <pre class="bg-info">
     {{answer.q.question}}
   </pre>
   <h2>Your answer</h2>
-  <pre class="bg-primary">
+  <pre class="bg-info">
     {{answer.a.answer}}
   </pre>
 
@@ -30,7 +30,7 @@
 </template>
 
 <template name="reviewsOfMyAnswer">
-  <tr class="{{#if isTA r}}bg-warning{{/if}}">
+  <tr class="{{#if isTA r}}bg-primary{{/if}}">
     <td>{{r.rating}} points</td>
     <td><pre>{{r.review}}</pre></td>
     <td>{{r.createdAt}}</td>

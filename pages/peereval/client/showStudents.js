@@ -141,4 +141,34 @@ Template.studentReview.helpers({
     var a = Answers.findOne({_id:this.review.answer_id})
     return {question:q,answer:a}
   },
+
+  TAclass: function(r){
+    var sinfo = StudentInfo.findOne({student_id:r.createdBy})
+    console.dir(sinfo)
+    console.dir(r)
+    console.log(sinfo.role)
+    if (sinfo.role == "teacher"){
+      return 'bg-warning'
+    } else {
+      return ""
+    }
+  },
+
+
+
+})
+
+Template.otherStudentReview.helpers({
+  TAclass: function(r){
+    var sinfo = StudentInfo.findOne({student_id:r.createdBy})
+    var theClass = ClassInfo.findOne(r.class_id);
+    console.dir(sinfo)
+    console.dir(r)
+    console.log(sinfo.role)
+    if ((sinfo.role == "teacher") && (theClass.createdBy==Meteor.userId())){
+      return 'bg-primary'
+    } else {
+      return ""
+    }
+  },
 })

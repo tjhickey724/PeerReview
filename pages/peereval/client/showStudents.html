@@ -80,12 +80,7 @@
 
     <ul>
       {{#each review in reviews question._id}}
-        <li >
-          <div class="bg-warning">
-            Rating: {{review.rating}}:
-            <div  style="white-space: pre-wrap;">{{review.review}}</div>
-          </div>
-      </li>
+        {{> otherStudentReview review=review}}
       {{/each}}
     </ul>
   </td>
@@ -110,9 +105,18 @@
 
 </template>
 
+<template name="otherStudentReview">
+  <li >
+    <div class="{{TAclass review}}">
+      Rating: {{review.rating}}:
+      <div  style="white-space: pre-wrap;">{{review.review}}</div>
+    </div>
+  </li>
+</template>
+
 <template name="studentReview">
   {{#if isInClass}}
-  <tr>
+  <tr {{TAclass review}}>
     <td>
       <b>{{reviewInfo.question.title}}</b><br>
       {{reviewInfo.question.question}}
