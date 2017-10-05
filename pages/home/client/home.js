@@ -1,6 +1,10 @@
 Template.home.helpers({
   classes:function(){
-    return StudentInfo.find({student_id:Meteor.userId(),})
+    return StudentInfo.find({student_id:Meteor.userId(), role:"student"})
+  },
+
+  mytaclasses:function(){
+    return StudentInfo.find({student_id:Meteor.userId(),role:"teacher"})
   },
 
   myclasses:function(){
@@ -45,7 +49,7 @@ Template.home.events({
        class_name:theClass.name,
        student_id:Meteor.userId(),
        createdAt:new Date(),
-       role:'student'
+       role:status
        }
       StudentInfo.insert(student);
     }
