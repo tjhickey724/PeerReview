@@ -12,6 +12,12 @@ and test with
 % echo $CLUSTER_WORKERS_COUNT
 
 
-In the bash shell before starting with
+Also, remember to turn off the password login
+% meteor remove accounts-password
+
+and to make sure that the client/startup.js file correctly specifies gracehopper
+(though I don't know if that is really needed....)
+
+Start it, in the bash shell, as follows:
 
 % ROOT_URL="http://gracehopper.cs-i.brandeis.edu:3500" meteor run --port 3500

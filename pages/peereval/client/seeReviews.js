@@ -11,3 +11,13 @@ Template.seeReviews.helpers({
     return z;
   }
 })
+
+Template.reviewsOfMyAnswer.helpers({
+  isTA:function(r) {
+    var sinfo = StudentInfo.findOne({student_id:r.createdBy})
+    console.dir(sinfo)
+    console.log(sinfo.role)
+    return sinfo.role == "teacher"
+
+  },
+})

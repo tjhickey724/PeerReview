@@ -1,7 +1,13 @@
 Template.viewClass.helpers({
 
   owns_class:function(theClass){
-    return theClass.createdBy == Meteor.userId()
+    if (theClass.createdBy == Meteor.userId()) {
+      return true;
+    }
+    var s = StudentInfo.findOne(
+      {class_id:theClass._id,student_id:Meteor.userId()}
+    )
+    return s.role=="teacher";
   },
 
   student_id: function(theClass){

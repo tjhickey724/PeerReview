@@ -47,8 +47,6 @@ Template.showQuestionFull.events({
       };
 
     Answers.insert(answerData);
-    var myAnswerId = Answers.findOne({question:this._id,createdBy:Meteor.userId()})
-
 
   }
 })
