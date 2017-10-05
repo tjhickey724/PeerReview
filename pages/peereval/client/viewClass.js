@@ -5,12 +5,15 @@ Template.viewClass.helpers({
   },
 
   student_id: function(theClass){
-    console.dir(theClass);
+
     var s = StudentInfo.findOne(
       {class_id:theClass._id,student_id:Meteor.userId()}
     )
-    console.dir(s)
-    return s._id;
+
+    if (s) {
+      return s._id;
+    }
+    return "";
   }
 })
 

@@ -11,16 +11,8 @@ this problem yet!!
 
 
 
-Template.showQuestionFull.onCreated(function() {
-  this.state = new ReactiveDict();
-  this.state.setDefault({
-    myAnswerId: undefined
-  });
-});
-
 Template.showQuestionFull.helpers({
-  title: function(){return this.title},
-  question: function(){return this.question},
+
   answer: function(){
     var ans= Answers.findOne(
       {createdBy:Meteor.userId(),
@@ -29,24 +21,8 @@ Template.showQuestionFull.helpers({
     return ans; // this could be undefined!
   },
 
-
-  hasEnoughReviews: function(){
-    var instance = Template.instance();
-    var myAnswerId = instance.state.get('myAnswerId');
-    if (myAnswerId) {
-      var myAnswer = Answers.findOne(myAnswerId);
-      return myAnswer.myReviews.length>=2;
-    } else {
-      return false;
-    }
-  },
-
-  hasAnswered: function(){
-    var instance = Template.instance();
-    return instance.state.get('myAnswerId');
-  },
-
 })
+
 
 Template.showQuestionFull.events({
   "click .js-submit-answer": function(event){
@@ -70,14 +46,9 @@ Template.showQuestionFull.events({
         class:this.class_id,
       };
 
-    var myAnswerId = Answers.insert(answerData);
-    instance.state.set('myAnswerId',myAnswerId);
+    Answers.insert(answerData);
+    var myAnswerId = Answers.findOne({question:this._id,createdBy:Meteor.userId()})
 
-    var toReview = Answers.findOne(
-      {question:this._id}
-    )
-    if (toReview)
-      instance.state.set("toReview",toReview);
-    //Router.go('/showQuestions');
+
   }
 })

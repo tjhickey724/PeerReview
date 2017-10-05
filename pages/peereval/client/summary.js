@@ -19,11 +19,12 @@ Template.question_summary_item.helpers({
   },
 
   ratings:function(qid){
+
     var z = Reviews.find({question_id:qid},{fields:{rating:1}}).fetch();
     var y = _.map(_.pluck(z,'rating'),function(x){return parseInt(x)})
     var x = _.reduce(y,function(x,s){return x+s},0)
     if (z.length>0)
-      return (x+0.0)/z.length;
+      return ((x+0.0)/z.length/this.q.points*100).toFixed(2);
     else {
       return "N/A"
     }
