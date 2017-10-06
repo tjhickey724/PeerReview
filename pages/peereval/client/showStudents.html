@@ -39,7 +39,7 @@
       <td>[{{#each r in reviews question._id}}{{r.rating}} {{/each}}]
         out of {{question.points}}</td>
       <td>
-         {{avgReview question._id}}
+         {{avgReview question._id question.points}}
       </td>
       <td>{{#if numReviews question}}
           <b>reviewed {{numReviews question}}</b>
@@ -64,7 +64,7 @@
 
 
   <h2>Details on Problems Attempted</h2>
-  <table class="table table-bordered table-striped">
+  <table class="table table-bordered">
     <thead>
       <tr><td>Problem</td><td>Student's Answer and Reviews</td></tr>
     </thead>
@@ -108,7 +108,7 @@
 <template name="otherStudentReview">
   <li >
     <div class="{{TAclass review}}">
-      Rating: {{review.rating}}:
+      Rating: {{review.rating}}: by {{reviewer review}}
       <div  style="white-space: pre-wrap;">{{review.review}}</div>
     </div>
   </li>
@@ -116,7 +116,7 @@
 
 <template name="studentReview">
   {{#if isInClass}}
-  <tr {{TAclass review}}>
+  <tr class="{{TAclass review}}">
     <td>
       <b>{{reviewInfo.question.title}}</b><br>
       {{reviewInfo.question.question}}

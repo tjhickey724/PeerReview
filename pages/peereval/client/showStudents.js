@@ -51,7 +51,8 @@ Template.showStudent.helpers({
     }
   },
 
-  avgReview:function(question_id){
+  avgReview:function(question_id, question_pts){
+
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
     if (!a) return  0.0;
     var rs;
@@ -60,9 +61,11 @@ Template.showStudent.helpers({
     if (rs.length==0){
       return 0.0;
     }
+
     var sum=0.0;
     rs.forEach(function(r){sum = sum + r.rating})
-    var avg = (sum/rs.length*100).toFixed(2);
+    var avg = (sum/rs.length*100.0/question_pts).toFixed(1);
+
     return avg;
   },
 
@@ -142,13 +145,12 @@ Template.studentReview.helpers({
     return {question:q,answer:a}
   },
 
+
+
   TAclass: function(r){
     var sinfo = StudentInfo.findOne({student_id:r.createdBy})
-    console.dir(sinfo)
-    console.dir(r)
-    console.log(sinfo.role)
     if (sinfo.role == "teacher"){
-      return 'bg-warning'
+      return 'bg-danger'
     } else {
       return ""
     }
@@ -162,13 +164,16 @@ Template.otherStudentReview.helpers({
   TAclass: function(r){
     var sinfo = StudentInfo.findOne({student_id:r.createdBy})
     var theClass = ClassInfo.findOne(r.class_id);
-    console.dir(sinfo)
-    console.dir(r)
-    console.log(sinfo.role)
-    if ((sinfo.role == "teacher") && (theClass.createdBy==Meteor.userId())){
+
+    if ((sinfo.role == "teacher")){ // && (theClass.createdBy==Meteor.userId())){
       return 'bg-primary'
     } else {
       return ""
     }
   },
+  reviewer: function(r){
+    var sinfo = StudentInfo.findOne({student_id:r.createdBy})
+    return sinfo.role
+  },
+
 })
