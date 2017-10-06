@@ -86,7 +86,7 @@ Template.showQuestionFull.events({
       };
 
     answerData.submitted = submitMode;
-    console.dir([lastAnswer,answerData]);
+
 
     // now we either update the saved version or insert the new version
     if (lastAnswer){
@@ -96,7 +96,7 @@ Template.showQuestionFull.events({
     }
 
     var zz = Answers.findOne(answerData);
-    console.dir(zz);
+
     event.target.blur();
 
   }
