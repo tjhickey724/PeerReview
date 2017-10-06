@@ -3,7 +3,7 @@
   <div style="white-space: pre-wrap;">
   {{question}}
   </div>
-  {{#if answer}}
+  {{#if answer.submitted}}
   <hr>
   <h2>Your Answer</h2>
   Submission date and time: {{answer.createdAt}}
@@ -19,12 +19,16 @@
 
   {{else}}
   <h2>Enter your answer here </h2>
-  <textarea class="form-control js-student-answer" rows="10" ></textarea>
+  <textarea class="form-control js-student-answer" rows="10" >{{answer.answer}}</textarea>
   <br>
-  <br>
-  Press <button class="btn btn-lg btn-info js-submit-answer">submit</button> when done!
-  <br>
-  You will not be able to edit your answers!
+  <br><br>
+  <input type="checkbox" class="js-submit-state"> Submit to server?  No changes will be allowed after submitting...
+  <br><br>
+
+
+  <button class="btn {{#if submitMode}} btn-lg {{else}} btn-sm{{/if}} btn-info js-submit-answer">
+    {{#if submitMode}} Submit {{else}} Save {{/if}}
+  </button>
   {{/if}}
   <hr>
 </template>
