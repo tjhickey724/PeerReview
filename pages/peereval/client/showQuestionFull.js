@@ -97,6 +97,7 @@ Template.showQuestionFull.events({
 
     var zz = Answers.findOne(answerData);
     console.dir(zz);
+    event.target.blur();
 
   }
 })
