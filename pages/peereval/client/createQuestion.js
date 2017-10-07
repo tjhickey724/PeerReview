@@ -11,7 +11,8 @@ Template.createQuestion.helpers({
 Template.createQuestion.events({
   "click .js-add-ps"(event,instance){
     var name = instance.$(".js-new-ps").val();
-    ProblemSets.insert({name:name,class_id:this.class._id});
+    var ps = {name:name,class_id:this.class._id}
+    ProblemSets.insert(ps);
   },
 
   "click .js-submit-question": function(event,instance){
