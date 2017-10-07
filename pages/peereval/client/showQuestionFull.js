@@ -82,6 +82,8 @@ Template.showQuestionFull.events({
         submitted: false,
         myReviews:[],  // list of _id's of students reviewed by this person
         myReviewers:[],
+        numTAreviews:0,
+        numReviews:0,
         class:this.class_id,
       };
 

@@ -56,6 +56,8 @@ Template.reviewAnswer.events({
     var reviewObj =
       {rating:parseInt(rating),
        review:theReview,
+       numReviews:0,
+       numTAreviews:0,
        createdAt: new Date(),
        createdBy: Meteor.userId(),
        question: this.q.question,
@@ -67,13 +69,18 @@ Template.reviewAnswer.events({
     myAnswer =
        Answers.findOne(
         {createdBy:Meteor.userId(),question:this.q._id});
-
+    myInfo = StudentInfo.findOne({student_id:Meteor.userId()});
 
     if (this.r._id) {
       Reviews.update(this.r._id,reviewObj);
     } else {
       Answers.update(myAnswer._id,{$push:{myReviews:this.a.createdBy}});
       Answers.update(this.a._id,{$push:{myReviewers:Meteor.userId()}});
+      Answers.update(this.a._id,{$inc:{numReviews:1}})
+      if (myInfo && myInfo.role=="teacher"){
+        Answers.update(this.a._id,{$inc:{numTAreviews:1}});
+        console.log("incrementing TA reviews for "+this.a._id)
+      }
       z = Reviews.insert(reviewObj);
     }
 

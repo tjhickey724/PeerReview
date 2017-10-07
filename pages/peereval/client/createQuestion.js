@@ -1,9 +1,19 @@
 Template.createQuestion.helpers({
   problemsets(){
-    var z = {class_id:this.class._id};
+
+    var z = {class_id:this.question.class_id};
+
     var w = ProblemSets.find(z);
+
     return w
   },
+
+  visible(){
+
+    if (this.question.visible)
+    return "checked"
+    else return ""
+  }
 
 })
 
@@ -23,7 +33,7 @@ Template.createQuestion.events({
     var points = instance.$(".js-points").val()
     var rubric = instance.$(".js-rubric").val()
     var problemset_id = instance.$(".js-problem-set").val()
-    var visible = instance.$("js-visible").prop('checked')
+    var visible = instance.$(".js-visible").prop('checked')
 
     var dbentry =
       {title:title,
@@ -35,6 +45,7 @@ Template.createQuestion.events({
        class_id:this.class._id,
        createdAt:(new Date()),
        createdBy:Meteor.userId()}
+
 
 
     if (this.question.question)
