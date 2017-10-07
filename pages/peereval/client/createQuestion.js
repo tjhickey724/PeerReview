@@ -15,14 +15,14 @@ Template.createQuestion.events({
   },
 
   "click .js-submit-question": function(event,instance){
-    event.preventDefault();
+    event.preventDefault()
 
-    var title = instance.$(".js-title").val();
-    var question = instance.$(".js-question-description").val();
-    var points = instance.$(".js-points").val();
-    var rubric = instance.$(".js-rubric").val();
-    var problemset_id = instance.$(".js-problem-set").val();
-
+    var title = instance.$(".js-title").val()
+    var question = instance.$(".js-question-description").val()
+    var points = instance.$(".js-points").val()
+    var rubric = instance.$(".js-rubric").val()
+    var problemset_id = instance.$(".js-problem-set").val()
+    var visible = instance.$("js-visible").prop('checked')
 
     var dbentry =
       {title:title,
@@ -30,6 +30,7 @@ Template.createQuestion.events({
        points:points,
        rubric:rubric,
        problemset_id:problemset_id,
+       visible:visible,
        class_id:this.class._id,
        createdAt:(new Date()),
        createdBy:Meteor.userId()}

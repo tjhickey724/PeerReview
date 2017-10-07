@@ -1,6 +1,6 @@
 Template.showQuestions.helpers({
-  questions: function(id){
-    return Questions.find({class_id:id},{sort:{createdAt:-1}})
+  questions: function(class_id){
+      return Questions.find({class_id:class_id},{sort:{createdAt:-1}})
   }
 })
 

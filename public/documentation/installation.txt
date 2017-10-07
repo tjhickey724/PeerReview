@@ -21,3 +21,34 @@ and to make sure that the client/startup.js file correctly specifies gracehopper
 Start it, in the bash shell, as follows:
 
 % ROOT_URL="http://gracehopper.cs-i.brandeis.edu:3500" meteor run --port 3500
+
+
+************************************************
+Multicore installation with external mongodb..
+
+First we create a mongo database folder, if it doesn't already exist
+% mkdir /data
+% mkdir /data/db
+Then we start up a mongo server running in a screen
+% mkdir mongoserver
+% cd mongoserver
+% screen -S mongoserver
+% mongod
+^A^D
+Then we create new folders for each of our servers and git pull in the lastest
+version of the server
+% mkdir multicorePRA
+% cd multicorePRA
+% git clone https://github.com/tjhickey724/PeerReview.git
+% mv PeerReview PR1
+etc.
+Then we start up servers sharing the mongodb, each in their own screen
+% screen -S PRA3501
+% meteor npm install
+% ROOT_URL="http://gracehopper.cs-i.brandeis.edu:3501" MONGO_URL="mongodb://127.0.0.1:27017" meteor run --port 3501
+^A^D
+
+************************************************
+Backing up the database
+% cd mongoserver
+% mongodump -h 127.0.0.1 --port 27017 -d meteor

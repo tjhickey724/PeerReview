@@ -7,7 +7,7 @@ Template.viewClass.helpers({
     var s = StudentInfo.findOne(
       {class_id:theClass._id,student_id:Meteor.userId()}
     )
-    return s.role=="teacher";
+    return s && s.role=="teacher";
   },
 
   student_id: function(theClass){

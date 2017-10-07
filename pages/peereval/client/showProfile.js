@@ -3,7 +3,7 @@ Template.showProfile.helpers({
     var profile = Profiles.findOne({id:Meteor.userId()})
     var u =  Meteor.users.findOne({_id:Meteor.userId()})
     // this is backward compatability code to add accountType to old existing accounts
-    if (!profile.accountType) {
+    if (profile && !profile.accountType) {
       if (u.services && u.services.google){
         profile.rname = u.services.google.name;
         profile.remail = u.services.google.email;
