@@ -4,22 +4,35 @@
 
 
   {{#if owns_class class}}
-  <a class="btn btn-small btn-primary" href="/createQuestion/{{class._id}}">Create a new Question</a>
-  <button class="btn btn-small btn-info js-showStudentPin">Show Student Pin</button>
-  <button class="btn btn-small btn-info js-showTeacherPin">Show TA Pin</button>
+  <a class="btn btn-sm btn-primary" href="/createQuestion/{{class._id}}">Create a new Question</a>
+  <button class="btn btn-sm btn-info js-showStudentPin">Show Student Pin</button>
+  <button class="btn btn-sm btn-info js-showTeacherPin">Show TA Pin</button>
 
-  <a class="btn btn-small btn-info" href="/showStudentsSummary/{{class._id}}">Show Student Info</a>
+  <a class="btn btn-sm btn-info" href="/showStudentsSummary/{{class._id}}">Show Student Info</a>
   {{/if}}
-  <a class="btn btn-small btn-info" href="/summary/{{class._id}}">Summary</a>
+  <a class="btn btn-sm btn-info" href="/summary/{{class._id}}">Summary</a>
 
-    <a class="btn btn-small btn-info" href="/studentWork/{{student_id class}}/{{class._id}}"> Details</a>
+    <a class="btn btn-sm btn-info" href="/studentWork/{{student_id class}}/{{class._id}}"> Details</a>
     {{> showProblemSets class=class}}
 
-    {{> showQuestions class=class}}
+    To see your personal progress on the questions click on
+      <a class="btn btn-sm btn-info" href="/studentWork/{{student_id class}}/{{class._id}}"> Details</a>
+      link.
 </template>
 
 
 <template name="showProblemSets">
+  <h1>Problem Sets for {{class.name}}</h1>
+
+      {{#each ps in problemsets}}
+
+            <a class="btn btn-small btn-info" href="/showProblemSet/{{ps._id}}">{{ps.name}}</a>
+
+      {{/each}}
+      <hr>
+</template>
+
+<template name="showProblemSetsTable">
   <h1>Problem Sets for {{class.name}}</h1>
   <table class="table table-bordered table-striped">
     <tbody>

@@ -1,5 +1,9 @@
 Installation Guide
 
+Current Approach (10/8/2017)
+Use meteorhacks:cluster on meteor with an external mongodb...
+
+
 Scaling
 This uses the meteorhacks:cluster package
 so when we start it up you need to specify the number of cores to use:
@@ -51,4 +55,7 @@ Then we start up servers sharing the mongodb, each in their own screen
 ************************************************
 Backing up the database
 % cd mongoserver
-% mongodump -h 127.0.0.1 --port 27017 -d meteor
+% mongodump -h 127.0.0.1 --port 3501 -d meteor
+
+Restoring the database
+% mongorestore -h 127.0.0.1 -p 27017 --db meteor --drop dump/

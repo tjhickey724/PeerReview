@@ -2,6 +2,20 @@
 This is for quick ideas, but everything has been moved to zenhub
 
 Next Steps:
+I just discovered that Meteor does not allow multiple oauth connections
+on different servers with a shared database, so I'm going to have to user
+nginx as a load balancer... I'll try this soon.
+
+For tomorrow though, I will just git pull the latest version of the Peer Review
+app and run it with meteorhacks:cluster ... the extra indexing should speed
+everything up and make it more efficient... Also, I could run it with an external
+database so that they don't all keep their own database...
+I'll try to do this at home tomorrow and then push to gracehopper in the afternoon
+
+Here are two good nginx/meteor links
+https://medium.freecodecamp.org/first-experiences-scaling-a-meteor-app-14a48e62a4af
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-meteor-js-application-on-ubuntu-14-04-with-nginx
+
 
 
 

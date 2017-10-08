@@ -34,7 +34,8 @@
     <tbody>
     {{#each question in questions student.class_id}}
     <tr>
-      <td> <b>{{question.title}}</b></td>
+      <td>  <a class="btn btn-small btn-warning" href="/showQuestionFull/{{question._id}}">
+           {{question.title}}</a></td>
       <td><i>{{answerTime question}}</i></td>
       <td>[{{#each r in reviews question._id}}{{r.rating}} {{/each}}]
         out of {{question.points}}</td>
