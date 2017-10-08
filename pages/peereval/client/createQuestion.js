@@ -1,7 +1,7 @@
 Template.createQuestion.helpers({
   problemsets(){
 
-    var z = {class_id:this.question.class_id};
+    var z = {class_id:this.class._id};
 
     var w = ProblemSets.find(z);
 

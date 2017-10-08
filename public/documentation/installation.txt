@@ -1,7 +1,13 @@
 Installation Guide
 
 Current Approach (10/8/2017)
-Use meteorhacks:cluster on meteor with an external mongodb...
+I'm just running the modified code with meteorhacks:cluster
+and no externaldb.
+
+To get this to work I needed to use 16 workers and to extend the memory
+allocated to each... Before I did this I was getting out of memory errors
+and it was requiring 100% of CPU .... and was completely unresponsive to
+the users...
 
 
 Scaling
