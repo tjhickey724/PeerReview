@@ -1,6 +1,7 @@
 <template name="questionsummary">
   <h1>All Current Answers and Reviews<br> for the {{title}} Question</h1>
   <pre class="bg-primary">{{question}}</pre>
+  {{#if hasAnswered _id}}
 <ol>
   {{#each answer in answers _id}}
     <li><pre class="bg_info">{{answer.answer}}</pre>
@@ -12,4 +13,7 @@
     </li>
   {{/each}}
 </ol>
+  {{else}}
+  You must answer the question before you can see others answers
+  {{/if}}
 </template>
