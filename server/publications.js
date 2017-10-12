@@ -39,6 +39,21 @@ Meteor.publish("reviewsOfMe",function(aid){
   }
 });
 
+Meteor.publish("allReviewsOfMe",function(){
+  console.log('in all Reviews of Me')
+  var ans = Answers.find({createdBy:this.userId});
+  if (!ans) return this.ready()
+
+  myAnswers = _.pluck(ans.fetch(),'_id')
+  console.dir(myAnswers);
+  if (myAnswers != []){
+    console.log("returning my reviews")
+    return Reviews.find({answer_id:{$in:myAnswers}})
+  } else {
+    return this.ready();
+  }
+});
+
 Meteor.publish("reviewsOfanswer2",function(aid){
   console.log('in reviews of ans: '+aid)
   var reviews = Reviews.find({answer_id:aid});
