@@ -1,3 +1,13 @@
+Template.home.onCreated(function(){
+  var instance = Template.instance();
+   // subscribe to the posts publication
+   /*var subscription =
+     [instance.subscribe('theStudentInfo'),
+      instance.subscribe('theClassInfo')]
+      */
+    //console.dir([s1,s2])
+})
+
 Template.home.helpers({
   classes:function(){
     return StudentInfo.find({student_id:Meteor.userId(), role:"student"})

@@ -1,3 +1,5 @@
+
+
 Template.reviewAnswers.helpers({
   question: function(){ return this.q.question},
   answers: function(){
@@ -13,9 +15,42 @@ Template.reviewAnswers.events({
   }
 })
 
+
+Template.reviewAnswer.onCreated(function(){
+
+  var instance = Template.instance();
+  instance.state =  new ReactiveDict();
+  instance.state.setDefault({
+    answer:false,
+  });
+
+  instance.autorun(function () {
+    console.log('in autorun');
+    var answer = instance.state.get('answer');
+    if (!answer) {
+      return;
+    }
+    var subscription = instance.subscribe('reviewsOfanswer2',answer);
+
+    // if subscription is ready, set limit to newLimit
+    if (subscription.ready()) {
+      console.log("> Reviewing "+answer+" \n\n")
+    } else {
+      console.log("> Subscription is not ready yet. \n\n");
+    }
+ });
+
+  //instance.answer = new ReactiveDict()
+  //instance.subscribe
+})
+
 Template.reviewAnswer.helpers({
+
   otherReviews:function(aid){
+
+    var instance = Template.instance();
     var reviews = Reviews.find({answer_id:aid});
+    instance.state.set('answer',aid);
     return reviews
   },
 

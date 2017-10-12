@@ -37,6 +37,7 @@
 				  {{#if profile}}
 					<li><a href="{{pathFor 'showProfile'}}">update profile</a></li>
 					<li><a href="{{pathFor 'createClass'}}">create a new class</a></li>
+
 					{{/if}}
 
 
@@ -48,7 +49,7 @@
 
 		  </div><!-- /.container-fluid -->
 		</nav>
-
+  <div class="text-right">DataUse:{{> datasize}}</div>
 		<!-- Here is where the actual content of the page gets inserted by the router! -->
 		{{#if currentUser}}
 		  {{#if profile}}
