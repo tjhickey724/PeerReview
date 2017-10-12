@@ -1,6 +1,17 @@
-9/24/2017
+
 This is for quick ideas, but everything has been moved to zenhub
 
+10/12/17 Thursday
+Today I want to minimize the amount of data that gets sent from the server
+to the clients using two approaches:
+1) Router-based subscriptions (so each page has the minimal data)
+2) CacheCollections where I cache the results of accumulation queries
+For (1) I need to figure out exactly what is needed on each page.
+
+After that I will implement a NGINX scaling instead of meteorhacks:cluster
+
+
+10/8/17
 Next Steps:
 I just discovered that Meteor does not allow multiple oauth connections
 on different servers with a shared database, so I'm going to have to user
