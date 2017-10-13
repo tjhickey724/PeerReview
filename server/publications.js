@@ -7,7 +7,6 @@ Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
 Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
 
 Meteor.publish("myProfiles",function(){
-  console.log('myProfiles');
   return Profiles.find({id:this.userId});});
 
 Meteor.publish("myQuestions",function(){
@@ -44,14 +43,11 @@ Meteor.publish("reviewsOfMe",function(aid){
 });
 
 Meteor.publish("allReviewsOfMe",function(){
-  console.log('in all Reviews of Me')
   var ans = Answers.find({createdBy:this.userId});
   if (!ans) return this.ready()
 
   myAnswers = _.pluck(ans.fetch(),'_id')
-  console.dir(myAnswers);
   if (myAnswers != []){
-    console.log("returning my reviews")
     return Reviews.find({answer_id:{$in:myAnswers}})
   } else {
     return this.ready();
@@ -59,7 +55,6 @@ Meteor.publish("allReviewsOfMe",function(){
 });
 
 Meteor.publish("reviewsOfanswer2",function(aid){
-  console.log('in reviews of ans: '+aid)
   var reviews = Reviews.find({answer_id:aid});
   if (reviews.count()==0){
     return this.ready()
@@ -69,7 +64,6 @@ Meteor.publish("reviewsOfanswer2",function(aid){
 });
 
 Meteor.publish("reviewsOfquestion",function(qid){
-  console.log('in reviews of question: '+qid)
   var reviews = Reviews.find({question_id:qid});
   if (reviews.count()==0){
     return this.ready()
@@ -79,9 +73,9 @@ Meteor.publish("reviewsOfquestion",function(qid){
 });
 
 Meteor.publish("reviewsOfmyanswer",function(qid){
-  console.log('in reviews of my ans: '+qid)
+
   var answer = Answers.findOne({question:qid,createdBy:this.userId})
-  console.dir(answer)
+
   var reviews = Reviews.find({answer_id:answer._id});
   if (reviews.count()==0){
     return this.ready()
@@ -91,14 +85,14 @@ Meteor.publish("reviewsOfmyanswer",function(qid){
 });
 
 Meteor.publish("reviewsOfanswer",function(qid){
-  console.log('in reviews of ans: '+qid)
+
   var myAns = Answers.findOne({question:qid,createdBy:this.userId}); // find the answer
-  console.dir(myAns)
+
   // check to see if the user has answered this question
   if (myAns.reviewing) {
       var reviews = Reviews.find({answer_id:myAns.reviewing});
       myAns = Answers.find({question:qid,createdBy:this.userId})
-      console.dir(reviews.fetch()) //,myAns.fetch()]);
+
       return [reviews,myAns]
   } else {
     return this.ready()
@@ -130,9 +124,7 @@ Meteor.publish("myProblemSets",function(){
   Meteor.publish("myProblemSet",function(cid){
     var sinfo = StudentInfo.findOne({student_id:this.userId,class_id:cid});
     var cinfo = ClassInfo.findOne({_id:cid,createdBy:this.userId})
-    console.log('mPS2 cid=',cid);
-    console.dir(sinfo)
-    console.dir(ProblemSets.findOne({class_id:cid}))
+
     if (sinfo || cinfo)
       return ProblemSets.find({class_id:cid})
     else {
@@ -151,8 +143,8 @@ Meteor.publish('toReview',function(qid){
   var myAns = Answers.findOne(query)
   var myInfo = StudentInfo.findOne({student_id:this.userId})
   var amTA = (myInfo && (myInfo.role="teacher"))  // or I own the class ...
-  console.log('in toReview '+qid)
-  //console.dir(myAns)
+
+
   if (!myAns){
     return this.ready() // I can only review if I have answered the question
   }
@@ -166,17 +158,17 @@ Meteor.publish('toReview',function(qid){
 
     if (_.contains(nextReview.myReviewers,this.userId)) {
       // if I've just reviewed this on, the change the reviewing flag!
-      console.log('reseting reviewing flag')
+
       Answers.update(myAns._id,{$unset:{reviewing:""}})
       myAns.reviewing = undefined
     } else {
-        console.log('reviewing an answer '+myAns.reviewing);
+
         toReview = Answers.find(myAns.reviewing)
-        console.dir(toReview.fetch())
+
         return toReview
       }
   }
-  console.log('looking for something to review')
+
   // in this case, I am not currently reviewing any answers, so time to find a new one
   var toReviewList = [];
   // first we look at the case of a TA!
