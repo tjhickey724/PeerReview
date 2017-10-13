@@ -20,7 +20,8 @@ Template.showStudentsSummary.helpers({
 
 Template.showStudentsSummary.events({
   "click #js-update"(event,instance){
-    Meteor.call('update_summary',this.class._id)
+    Meteor.call('update_summary',this.class._id,
+      function(error,result){alert("student summary has been updated!")})
   },
 
   "click #js-ansSubmitted"(event,instance){

@@ -92,7 +92,7 @@ Template.showQuestionFull.events({
 
     // now we either update the saved version or insert the new version
     if (lastAnswer){
-      Answers.update(lastAnswer._id,answerData)
+      Answers.update(lastAnswer._id,answerData);
     } else {
       Answers.insert(answerData)
     }
