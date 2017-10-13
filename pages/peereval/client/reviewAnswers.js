@@ -68,7 +68,7 @@ Template.reviewAnswer.helpers({
   },
 
   points: function(){
-
+    console.dir(['points this=',this])
     return(_.range(parseInt(this.q.points),-1,-1));
   },
 

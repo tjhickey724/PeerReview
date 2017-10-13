@@ -16,3 +16,13 @@ Template.questionsummary.helpers({
   }
 
 })
+
+Template.questionsummary_review.helpers({
+  isTA(reviewer){
+    var s = StudentInfo.findOne({student_id:reviewer});
+    var t = StudentInfo.findOne({student_id:Meteor.userId()})
+
+    return (s && t && (s.role=="teacher") && (t.role=="teacher"))
+
+  }
+})

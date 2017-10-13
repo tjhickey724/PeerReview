@@ -7,7 +7,7 @@
     <li><pre class="bg_info">{{answer.answer}}</pre>
       <ul>
         {{#each review in reviews answer._id}}
-          <li class="bg-warning">[{{review.rating}}]: {{review.review}}</li>
+          {{> questionsummary_review review=review }}
         {{/each}}
       </ul>
     </li>
@@ -16,4 +16,11 @@
   {{else}}
   You must answer the question before you can see others answers
   {{/if}}
+</template>
+
+<template name="questionsummary_review">
+  <li class="{{#if isTA review.createdBy}}bg-primary{{else}}bg-warning{{/if}}">
+    [{{review.rating}}]:: {{review.review}}
+    {{#if isTA review.createdBy}}TA REVIEW{{/if}}
+  </li>
 </template>

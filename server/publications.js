@@ -14,6 +14,10 @@ Meteor.publish("myQuestions",function(){
   return Questions.find({createdBy:this.userId})
 })
 
+Meteor.publish("theQuestionData",function(){
+  return QuestionData.find()
+})
+
 Meteor.publish("myAnswers",function(){
   return Answers.find({createdBy:this.userId})
 })
@@ -57,6 +61,16 @@ Meteor.publish("allReviewsOfMe",function(){
 Meteor.publish("reviewsOfanswer2",function(aid){
   console.log('in reviews of ans: '+aid)
   var reviews = Reviews.find({answer_id:aid});
+  if (reviews.count()==0){
+    return this.ready()
+  } else {
+    return reviews
+  }
+});
+
+Meteor.publish("reviewsOfquestion",function(qid){
+  console.log('in reviews of question: '+qid)
+  var reviews = Reviews.find({question_id:qid});
   if (reviews.count()==0){
     return this.ready()
   } else {
