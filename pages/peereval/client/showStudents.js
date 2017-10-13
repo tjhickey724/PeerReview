@@ -35,7 +35,34 @@ Template.showStudent.helpers({
     var z = {createdBy:this.student.student_id,question:question._id}
     var a = Answers.findOne(z)
     if (a && a.myReviews) {
-      return a.myReviews.length;
+      var rs = Reviews.find({question_id:question._id,createdBy:this.student.student_id});
+      if (true || rs.count() != a.myReviews.length){
+        //console.log('bug in numReviews');
+        //console.dir(a);
+        var myReviews =
+          _.pluck(
+             _.map(rs.fetch(),
+                  function(r){
+
+                    var ans1= Answers.findOne(r.answer_id)
+                    if (!ans1) {
+                      //console.dir(['nrBug',ans1, r.answer_id,r,question])
+                      return {}
+                    } else {
+                      return ans1
+                    }
+
+                  }),
+             'createdBy');
+        //console.dir(myReviews);
+        if (JSON.stringify(myReviews) != JSON.stringify(a.myReviews)) {
+          //console.log("************")
+          //console.dir([myReviews,a.myReviews])
+        }
+          return rs.count()
+      } else {
+          return a.myReviews.length;
+        }
     } else {
       return 0;
     }

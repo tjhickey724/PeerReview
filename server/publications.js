@@ -6,6 +6,29 @@ Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
 Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
 Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
 
+
+Meteor.publish('TAview',function(data){
+
+  var course = ClassInfo.findOne(data.cid);
+
+
+  var s = StudentInfo.findOne(data.sid)
+
+
+  if (course.createdBy==this.userId){
+
+
+    var rs=  Reviews.find({createdBy:s.student_id})
+    var as=  Answers.find({createdBy:s.student_id})
+    var qs=  Questions.find()
+
+    return [rs,as,qs]
+  } else {
+    return this.ready()
+  }
+})
+
+
 Meteor.publish("myProfiles",function(){
   return Profiles.find({id:this.userId});});
 
@@ -19,6 +42,14 @@ Meteor.publish("theQuestionData",function(){
 
 Meteor.publish("myAnswers",function(){
   return Answers.find({createdBy:this.userId})
+})
+
+Meteor.publish("answersReviewedBy",function(sid){
+  var sinfo = StudentInfo.findOne(sid);
+  var myReviews =
+   Reviews.find({createdBy:sinfo.student_id});
+   var ans = _.pluck(myReviews.fetch(),'answer_id')
+   return Answers.find({_id:{$in:ans}});
 })
 
 Meteor.publish("answers2question",function(qid){
@@ -53,6 +84,8 @@ Meteor.publish("allReviewsOfMe",function(){
     return this.ready();
   }
 });
+
+
 
 Meteor.publish("reviewsOfanswer2",function(aid){
   var reviews = Reviews.find({answer_id:aid});
