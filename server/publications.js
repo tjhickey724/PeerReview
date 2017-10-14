@@ -96,6 +96,36 @@ Meteor.publish("reviewsOfanswer2",function(aid){
   }
 });
 
+Meteor.publish("allReviewsOfStudent",function(sid){
+  console.log("*****/n/n/n/n******/n/n/n****roS="+sid)
+  var sinfo = StudentInfo.findOne(sid);
+  console.dir(sinfo)
+  var answers = Answers.find({createdBy:sinfo.student_id}).fetch();
+  var reviews = Reviews.find({answer_id:{$in:_.pluck(answers,'_id')}})
+  console.log('revs='+reviews.count())
+  if (reviews.count()==0){
+    return this.ready()
+  } else {
+    return reviews
+  }
+});
+
+Meteor.publish("reviewsOfAnswersIreviewed",function(sid){
+  console.log("*****/n/n/n/n******/n/n/n****roair="+sid)
+  var sinfo = StudentInfo.findOne(sid);
+  console.dir(sinfo)
+  var reviews = Reviews.find({createdBy:sinfo.student_id})
+  console.log("numreviews = "+reviews.count())
+  var ansids = _.pluck(reviews,'answer_id')
+  var reviews = Reviews.find({answer_id:{$in:ansids}})
+  if (reviews)
+    return reviews
+  else {
+    console.log('problem in roair')
+    return this.ready()
+  }
+})
+
 Meteor.publish("reviewsOfquestion",function(qid){
   var reviews = Reviews.find({question_id:qid});
   if (reviews.count()==0){
