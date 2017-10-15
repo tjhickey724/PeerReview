@@ -97,12 +97,12 @@ Meteor.publish("reviewsOfanswer2",function(aid){
 });
 
 Meteor.publish("allReviewsOfStudent",function(sid){
-  console.log("*****/n/n/n/n******/n/n/n****roS="+sid)
+
   var sinfo = StudentInfo.findOne(sid);
-  console.dir(sinfo)
+
   var answers = Answers.find({createdBy:sinfo.student_id}).fetch();
   var reviews = Reviews.find({answer_id:{$in:_.pluck(answers,'_id')}})
-  console.log('revs='+reviews.count())
+
   if (reviews.count()==0){
     return this.ready()
   } else {
@@ -111,17 +111,18 @@ Meteor.publish("allReviewsOfStudent",function(sid){
 });
 
 Meteor.publish("reviewsOfAnswersIreviewed",function(sid){
-  console.log("*****/n/n/n/n******/n/n/n****roair="+sid)
+
   var sinfo = StudentInfo.findOne(sid);
-  console.dir(sinfo)
-  var reviews = Reviews.find({createdBy:sinfo.student_id})
-  console.log("numreviews = "+reviews.count())
+
+  var reviews = Reviews.find({createdBy:sinfo.student_id}).fetch()
+  if (!reviews) return this.ready()
+
   var ansids = _.pluck(reviews,'answer_id')
   var reviews = Reviews.find({answer_id:{$in:ansids}})
   if (reviews)
     return reviews
   else {
-    console.log('problem in roair')
+
     return this.ready()
   }
 })
@@ -152,7 +153,7 @@ Meteor.publish("reviewsOfanswer",function(qid){
   var myAns = Answers.findOne({question:qid,createdBy:this.userId}); // find the answer
 
   // check to see if the user has answered this question
-  if (myAns.reviewing) {
+  if (myAns && myAns.reviewing) {
       var reviews = Reviews.find({answer_id:myAns.reviewing});
       myAns = Answers.find({question:qid,createdBy:this.userId})
 
