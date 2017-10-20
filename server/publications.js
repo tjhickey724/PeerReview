@@ -256,7 +256,7 @@ Meteor.publish('toReview',function(qid){
     ).fetch()
   }
 
-  if (toReviewList==[])
+  if (toReviewList.length==0)
     return this.ready()
 
   var k = _.random(0,toReviewList.length-1)
