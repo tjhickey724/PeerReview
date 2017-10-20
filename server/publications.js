@@ -244,7 +244,7 @@ Meteor.publish('toReview',function(qid){
       },
       { sort:{numTAreviews:1}
       }
-    )
+    ).fetch()
   } else {
     toReviewList = Answers.find(
       {
@@ -253,7 +253,7 @@ Meteor.publish('toReview',function(qid){
       },
       { sort:{numReviews:1}
       }
-    )
+    ).fetch()
   }
 
   if (toReviewList==[])
