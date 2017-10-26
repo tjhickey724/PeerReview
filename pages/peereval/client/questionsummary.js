@@ -11,7 +11,8 @@ Template.questionsummary.helpers({
 
   hasAnswered:function(qid){
     // return true when the user has answered this question.
-    var answer = Answers.find({question:qid,createdBy:Meteor.userId()});
+    var answer = Answers.findOne({question:qid,createdBy:Meteor.userId()});
+    console.dir(['hasAnswered',answer])
     return answer;
   }
 
