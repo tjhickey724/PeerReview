@@ -34,9 +34,9 @@
     <tbody>
     {{#each question in questions student.class_id}}
     <tr>
-      <td>  <a class="btn btn-small btn-warning" href="/showQuestionFull/{{question._id}}">
+      <td>  <a class="btn btn-sm btn-warning" href="/showQuestionFull/{{question._id}}">
            {{question.title}}</a></td>
-      <td><i>{{answerTime question}}</i></td>
+      <td><i><a class="btn btn-sm btn-info" href="#{{question._id}}"> {{answerTime question}}</a></i></td>
       <td>[{{#each r in reviews question._id}}{{r.rating}} {{/each}}]
         out of {{question.points}}</td>
       <td>
@@ -73,7 +73,7 @@
   {{#each question in questions class._id}}
     <tr>
       <td>
-    <b>{{question.title}}</b>
+    <b><a id="{{question._id}}">{{question.title}}</a></b>
     <div  style="white-space: pre-wrap;">{{question.question}}</div>
      </td>
      <td >
