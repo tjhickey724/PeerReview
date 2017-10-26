@@ -12,9 +12,11 @@ Template.questionsummary.helpers({
   hasAnswered:function(qid){
     // return true when the user has answered this question.
     var answer = Answers.findOne({question:qid,createdBy:Meteor.userId()});
-    console.dir(['hasAnswered',answer])
-    return answer;
-  }
+    var s = StudentInfo.findOne({student_id:Meteor.userId()});
+
+    return answer || s.role=="teacher";
+  },
+
 
 })
 
@@ -25,5 +27,5 @@ Template.questionsummary_review.helpers({
 
     return (s && t && (s.role=="teacher") && (t.role=="teacher"))
 
-  }
+  },
 })
