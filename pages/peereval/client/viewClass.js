@@ -1,7 +1,7 @@
 Template.viewClass.helpers({
 
   owns_class:function(theClass){
-    console.dir(['in oc: ',theClass])
+
     if (theClass.createdBy == Meteor.userId()) {
       return true;
     }
@@ -36,7 +36,7 @@ Template.viewClass.events({
 
 Template.showProblemSets.helpers({
   problemsets(){
-    console.dir(['in sPS ',this])
+
     return ProblemSets.find({class_id:this.class._id});
   }
 })

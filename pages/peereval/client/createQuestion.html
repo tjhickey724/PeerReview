@@ -6,7 +6,7 @@
   Pick a Problem Set for this question:
   <select class="js-problem-set bg-info">
     {{#each ps in problemsets}}
-    <option value="{{ps._id}}">{{ps.name}}</option>
+    <option value="{{ps._id}}" {{selectedPS ps._id}}>{{ps.name}}</option>
     {{/each}}
   </select>
   <br>

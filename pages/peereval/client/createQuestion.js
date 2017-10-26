@@ -3,9 +3,18 @@ Template.createQuestion.helpers({
 
     var z = {class_id:this.class._id};
 
-    var w = ProblemSets.find(z);
+    var w = ProblemSets.find(z).fetch();
 
-    return w
+    return w.reverse()
+  },
+
+  selectedPS(psid){
+    if (this.question.problemset_id==psid) {
+      return "selected"
+    } else {
+      return ""
+    }
+
   },
 
   visible(){

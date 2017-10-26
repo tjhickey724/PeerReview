@@ -13,9 +13,9 @@ Meteor.publish('TAview',function(data){
 
 
   var s = StudentInfo.findOne(data.sid)
+  var me = StudentInfo.findOne({student_id:this.userId})
 
-
-  if (course.createdBy==this.userId){
+  if (course.createdBy==this.userId || me.role=="teacher"){
 
 
     var rs=  Reviews.find({createdBy:s.student_id})
@@ -139,6 +139,9 @@ Meteor.publish("reviewsOfquestion",function(qid){
 Meteor.publish("reviewsOfmyanswer",function(qid){
 
   var answer = Answers.findOne({question:qid,createdBy:this.userId})
+  if (!answer){
+    return this.ready()
+  }
 
   var reviews = Reviews.find({answer_id:answer._id});
   if (reviews.count()==0){
