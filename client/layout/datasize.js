@@ -20,7 +20,7 @@ Template.datasize.helpers({
         "site_stats",
         [],
         function(err,result){
-          console.dir(["stats",err,result])
+
           instance.state.set("stats",result)
         }
     )
