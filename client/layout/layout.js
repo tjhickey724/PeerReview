@@ -23,7 +23,6 @@ Template.layout.helpers({
 
   stats:function(){
     var instance = Template.instance();
-    console.dir(instance);
     Meteor.call(
         "site_stats",
         [],
