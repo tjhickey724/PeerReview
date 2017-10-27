@@ -1,6 +1,6 @@
 Template.summary.onCreated(function(){
   var instance = Template.instance();
-    console.dir(['summary onCreated',instance.data])
+    
     if (instance.data.class.createdBy==Meteor.userId())
       Meteor.call('getAllQuestionData');
 })
