@@ -1,5 +1,6 @@
 Template.home.onCreated(function(){
   var instance = Template.instance();
+  instance.state = new ReactiveDict({stats:""});
    // subscribe to the posts publication
    /*var subscription =
      [instance.subscribe('theStudentInfo'),
@@ -20,6 +21,15 @@ Template.home.helpers({
   myclasses:function(){
     return ClassInfo.find({createdBy:Meteor.userId()})
   },
+
+  stats:function(){
+    var instance = Template.instance();
+    Meteor.call("site_stats",[],
+        function(err,result){
+          instance.state.set("stats",result);
+           console.dir([stats,err,result])});
+    return JSON.stringify(instance.state.get("stats"));
+  }
 
 
 })

@@ -1,5 +1,14 @@
 Meteor.methods({
 
+    site_stats(){
+      var qs = Questions.find().count();
+      var as = Answers.find().count();
+      var rs = Reviews.find().count();
+      var ps = ProblemSets.find().count();
+      var cs = ClassInfo.find().count();
+      var ss = StudentInfo.find().count();
+      return {Q:qs,A:as,R:rs,P:ps,C:cs,S:ss};
+    },
 
     update_summary(class_id){
 
