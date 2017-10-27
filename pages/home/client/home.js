@@ -22,14 +22,7 @@ Template.home.helpers({
     return ClassInfo.find({createdBy:Meteor.userId()})
   },
 
-  stats:function(){
-    var instance = Template.instance();
-    Meteor.call("site_stats",[],
-        function(err,result){
-          instance.state.set("stats",result);
-           console.dir([stats,err,result])});
-    return JSON.stringify(instance.state.get("stats"));
-  }
+
 
 
 })

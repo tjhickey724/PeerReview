@@ -50,6 +50,9 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
   <div class="text-right">DataUse:{{> datasize}}</div>
+	<div class="bg-primary text-right">
+    {{stats}}
+	</div>
 		<!-- Here is where the actual content of the page gets inserted by the router! -->
 		{{#if currentUser}}
 		  {{#if profile}}

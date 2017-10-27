@@ -7,7 +7,7 @@ Meteor.methods({
       var ps = ProblemSets.find().count();
       var cs = ClassInfo.find().count();
       var ss = StudentInfo.find().count();
-      return {Q:qs,A:as,R:rs,P:ps,C:cs,S:ss};
+      return {Questions:qs,Answers:as,Reviews:rs,ProblemSets:ps,Classes:cs,Students:ss};
     },
 
     update_summary(class_id){
