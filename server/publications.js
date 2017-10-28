@@ -1,5 +1,9 @@
 Meteor.publish("theProfiles",function(){return Profiles.find();});
-Meteor.publish("theQuestions",function(){return Questions.find({visible:true});});
+Meteor.publish("theQuestions",function(){
+  return Questions.find(
+    {$or:[{visible:true},{createdBy:this.userId}]}
+  );
+});
 Meteor.publish("theAnswers",function(){return Answers.find();});
 Meteor.publish("theReviews",function(){return Reviews.find();});
 Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
