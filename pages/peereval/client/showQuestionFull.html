@@ -1,15 +1,11 @@
 <template name="showQuestionFull">
   <h1>{{title}}</h1>
-  <div style="white-space: pre-wrap;">
-  {{question}}
-  </div>
+  <div style="white-space: pre-wrap; font-family:monospace;">{{question}}</div>
   {{#if answer.submitted}}
   <hr>
   <h2>Your Answer</h2>
   Submission date and time: {{answer.createdAt}}
-  <pre class="bg-info">
-    {{answer.answer}}
-  </pre>
+  <pre class="bg-info">{{answer.answer}}</pre>
   <a class="btn btn-small btn-info" href="/seeReviews/{{_id}}">See reviews of your answer</a>
   <a class="btn btn-small btn-info" href="/seeYourReviews/{{_id}}">Show your reviews for this problem</a>
 
