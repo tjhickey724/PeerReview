@@ -247,6 +247,7 @@ Meteor.publish('toReview',function(qid){
     toReviewList = Answers.find(
       {
         question:qid,
+        submitted:true,
         createdBy:{$ne:this.userId,$nin:myAns.myReviews},
       },
       { sort:{numTAreviews:1}
@@ -256,6 +257,7 @@ Meteor.publish('toReview',function(qid){
     toReviewList = Answers.find(
       {
         question:qid,
+        submitted:true,
         createdBy:{$ne:this.userId,$nin:myAns.myReviews},
       },
       { sort:{numReviews:1}
