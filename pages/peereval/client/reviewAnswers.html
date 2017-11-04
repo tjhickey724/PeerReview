@@ -6,6 +6,7 @@
 
 
 <template name="reviewAnswer">
+ {{#if myAns}}
   <h1>{{q.title}}</h1>
   <h2>Question</h2>
   <div class="bg-danger">
@@ -56,5 +57,8 @@
  {{else}}
     <hr><hr>
     <h2>You have reviewed all available answers. Please try again later.</h2>
+ {{/if}}
+ {{else}}
+ You must first answer the question before you can review answers
  {{/if}}
 </template>
