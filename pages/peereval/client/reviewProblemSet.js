@@ -59,8 +59,9 @@ Template.studentProblemSetData.helpers({
         }
       })
     if (totalScore==0){
-      totalScore = sum.toFixed(1);
+      totalScore = sum;
     }
+    //totalScore = sum.toFixed(1);
     reviewScores.push(totalScore)
     reviewScores = _.map(reviewScores,
       function(x){

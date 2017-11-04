@@ -10,6 +10,19 @@ Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
 Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
 Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
 
+Meteor.publish("thePSanswers",function(psid){
+  var ps = ProblemSets.findOne(psid)
+  var questions = Questions.find({problemset_id:psid}).fetch()
+  var qids = _.pluck(questions,'_id')
+  return Answers.find({question:{$in:qids}})
+});
+
+Meteor.publish("oneAnswer",function(aid){
+  var a = Answers.findOne(aid)
+  var as = Answers.find({question:a.question})
+  return as
+});
+
 Meteor.publish("theTAreviews",function(psid){
   console.log("Inside theTAreviews "+psid);
   // get the TAs for the class
