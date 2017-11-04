@@ -1,5 +1,6 @@
 <template name="showProblemSet">
-  <h1>Problem Set: {{problemset.name}}</h1>
+  <h1>Problem Set: {{problemset.name}}
+    -- <a class="btn btn-sm btn-info" href="/reviewProblemSet/{{problemset._id}}">reviews</a></h1>
 
   <table class="table table-bordered table-striped">
     <tbody>
@@ -8,7 +9,7 @@
       <td><a class="btn btn-sm btn-info" href="/showQuestionFull/{{question._id}}">{{question.title}}</a></td>
       <td>{{question.createdAt}}
         {{#if owns_question question.createdBy}}-- <a href="/createQuestion/{{question.class_id}}/{{question._id}}">Edit</a>
-        {{/if}} 
+        {{/if}}
     </td>
     </tr>
     {{/each}}

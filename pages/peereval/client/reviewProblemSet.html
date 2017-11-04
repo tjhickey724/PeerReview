@@ -1,0 +1,33 @@
+<template name="reviewProblemSet">
+<h1>Reviews of {{problemset.name}}</h1>
+{{#if isTA problemset.class_id}}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr><td>name</td><td>email</td><td>grade</td></tr>
+  </thead>
+  <tbody>
+{{#each student in students problemset.class_id}}
+{{> studentProblemSetData student=student problemset=problemset}}
+
+{{/each}}
+  </tbody>
+</table>
+{{else}}
+You don't have permission to see this page
+{{/if}}
+
+</template>
+
+<template name="studentProblemSetData">
+<tr>
+  <td>{{name student.student_id}}</td>
+  <td>{{email student.student_id}}</td>
+  {{#each score in scores student problemset}}
+  <td>{{score.val}}
+    {{#if score.link}}
+    <a href="/reviewOneAnswer/{{score.link}}">review</a>
+    {{/if}}</td>
+  {{/each}}
+</tr>
+</template>

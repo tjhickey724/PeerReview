@@ -10,6 +10,20 @@ Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
 Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
 Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
 
+Meteor.publish("theTAreviews",function(psid){
+  console.log("Inside theTAreviews "+psid);
+  // get the TAs for the class
+  // get the reviews written by those TAs
+  var tas = StudentInfo.find({role:'teacher'}).fetch()
+  if (! tas) {
+    console.log("no tas!");
+    return this.ready()
+  }
+  var taids = _.map(tas,function(ta){return ta.student_id})
+  var taReviews = Reviews.find({createdBy:{$in:taids}})
+  console.log("inside theTAreview: "+taReviews.count())
+  return taReviews
+})
 
 Meteor.publish('TAview',function(data){
 
