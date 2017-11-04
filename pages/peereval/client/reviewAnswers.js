@@ -62,9 +62,10 @@ Template.reviewAnswer.helpers({
     }
   },
 
-  hasAnswer:function(a){
+  hasAnswer:function(q){
+    var myAns = Answers.findOne({question:q._id,createdBy:Meteor.userId()})
 
-    return a
+    return myAns
   },
 
   points: function(){

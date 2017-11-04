@@ -6,7 +6,7 @@
 
 
 <template name="reviewAnswer">
- {{#if myAns}}
+
   <h1>{{q.title}}</h1>
   <h2>Question</h2>
   <div class="bg-danger">
@@ -14,7 +14,8 @@
   </div>
   <hr>
 
-  {{#if hasAnswer a}}
+  {{#if a}}
+    {{#if hasAnswer q}}
   Please give a grade and write a comment
   explaining what was wrong and what was right with this attempted answer
   <div class="row">
@@ -54,11 +55,12 @@
   <button class="js-back btn btn-lg btn-warning">Back</button>
   <br><br><br><br>
   <br>
+    {{else}}
+    You must answer the question before you can review others
+    {{/if}}
  {{else}}
     <hr><hr>
     <h2>You have reviewed all available answers. Please try again later.</h2>
  {{/if}}
- {{else}}
- You must first answer the question before you can review answers
- {{/if}}
+
 </template>
