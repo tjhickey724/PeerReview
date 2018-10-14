@@ -26,6 +26,7 @@ Template.showQuestionFull.helpers({
     return(this.submitted)
   },
 
+
   answer: function(){
     var ans= Answers.findOne(
       {createdBy:Meteor.userId(),
@@ -36,6 +37,10 @@ Template.showQuestionFull.helpers({
     }
 
     return ans; // this could be undefined!
+  },
+
+  lastSave: function(){
+    return this.createdAt
   },
 
   submitMode: function(){
@@ -96,6 +101,8 @@ Template.showQuestionFull.events({
     } else {
       Answers.insert(answerData)
     }
+    console.log("just updated or inserted:")
+    console.dir(answerData)
 
     var zz = Answers.findOne(answerData);
 

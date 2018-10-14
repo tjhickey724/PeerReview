@@ -10,6 +10,12 @@ Meteor.methods({
       return {Questions:qs,Answers:as,Reviews:rs,ProblemSets:ps,Classes:cs,Students:ss};
     },
 
+    submit_all_answers(question){
+      console.log("here is where I set the submitted flag to True for all answers to this question!")
+      var a = Answers.update({question:question._id},{$set:{submitted:true}},{multi:true})
+      console.dir(a)
+    },
+
     update_summary(class_id){
 
       // this updates the summary info for each student in a class

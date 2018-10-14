@@ -18,13 +18,20 @@
   <textarea class="form-control js-student-answer" rows="10" >{{answer.answer}}</textarea>
   <br>
   <br><br>
+  {{#if quizQuestion}}
+  Your answers will automatically be submitted when the quiz is over.
+  Just make sure to save your answers frequently!
+  {{else}}
   <input type="checkbox" class="js-submit-state"> Submit to server?  No changes will be allowed after submitting...
+  {{/if}}
   <br><br>
+
 
 
   <button class="btn {{#if submitMode}} btn-lg btn-danger{{else}} btn-sm btn-info{{/if}} js-submit-answer">
     {{#if submitMode}} Submit {{else}} Save {{/if}}
   </button>
   {{/if}}
+  <div id="savedMessage">last save: {{answer.createdAt}}</div>
   <hr>
 </template>
