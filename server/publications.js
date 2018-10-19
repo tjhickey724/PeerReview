@@ -4,11 +4,25 @@ Meteor.publish("theQuestions",function(){
     {$or:[{visible:true},{createdBy:this.userId}]}
   );
 });
+Meteor.publish("theQuestionsForPS",function(psid){
+  return Questions.find(
+    {problemset_id:psid}
+  );
+});
 Meteor.publish("theAnswers",function(){return Answers.find();});
 Meteor.publish("theReviews",function(){return Reviews.find();});
 Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
+Meteor.publish("theClassInfoForPS",function(psid){
+  var ps = ProblemSets.findOne(psid);
+  return ClassInfo.find(ps.class_id);});
 Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
+Meteor.publish("theStudentInfoForPS",function(psid){
+  var ps = ProblemSets.findOne(psid);
+  var the_class = ClassInfo.findOne(ps.class_id);
+  console.log(JSON.stringify(["ps=",ps,'class',the_class]))
+  return StudentInfo.find({class_id:the_class._id});});
 Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
+Meteor.publish("theProblemSet",function(psid){return ProblemSets.find(psid);});
 
 Meteor.publish("thePSanswers",function(psid){
   var ps = ProblemSets.findOne(psid)
@@ -34,6 +48,25 @@ Meteor.publish("theTAreviews",function(psid){
   }
   var taids = _.map(tas,function(ta){return ta.student_id})
   var taReviews = Reviews.find({createdBy:{$in:taids}})
+
+  return taReviews
+})
+
+Meteor.publish("theTAreviewsForPS",function(psid){
+
+  // get the TAs for the class
+  // get the reviews written by those TAs
+  var tas = StudentInfo.find({role:'teacher'}).fetch()
+  if (! tas) {
+
+    return this.ready()
+  }
+  var qs = Questions.find({problemset_id:psid}).fetch()
+  //console.log(JSON.stringify(qs))
+  var qids = _.map(qs,function(q){return q._id})
+  //console.log(JSON.stringify(qids))
+  var taids = _.map(tas,function(ta){return ta.student_id})
+  var taReviews = Reviews.find({question_id:{$in:qids}, createdBy:{$in:taids}})
 
   return taReviews
 })

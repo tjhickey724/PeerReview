@@ -1,7 +1,14 @@
 <template name="reviewProblemSet">
 <h1>Reviews of {{problemset.name}}</h1>
 {{#if isTA problemset.class_id}}
-
+<hr>
+<h2>TA reviews</h2>
+<ul>
+{{#each ta in tas problemset.class_id}}
+<li>{{ta.numReviews}} -- {{studentName ta.student_id}} </li>
+{{/each}}
+</ul>
+<hr>
 <table class="table table-bordered table-striped">
   <thead>
     <tr><td>name</td><td>email</td><td>grade</td></tr>

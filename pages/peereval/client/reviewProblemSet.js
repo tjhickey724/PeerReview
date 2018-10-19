@@ -5,7 +5,18 @@ Template.reviewProblemSet.helpers({
     return ((s && s.role=='teacher') || c.createdBy ==Meteor.userId())
   },
 
-  students(class_id){return StudentInfo.find({class_id:class_id})},
+  students(class_id){
+    return StudentInfo.find({class_id:class_id})},
+
+  tas(class_id){
+    return StudentInfo.find({class_id:class_id,role:'teacher'})},
+
+  studentName(student_id){
+    var p =  Profiles.findOne({id:student_id})
+    return p.name;
+  }
+
+
 
 })
 
