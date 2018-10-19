@@ -19,7 +19,7 @@ Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
 Meteor.publish("theStudentInfoForPS",function(psid){
   var ps = ProblemSets.findOne(psid);
   var the_class = ClassInfo.findOne(ps.class_id);
-  console.log(JSON.stringify(["ps=",ps,'class',the_class]))
+  //console.log(JSON.stringify(["ps=",ps,'class',the_class]))
   return StudentInfo.find({class_id:the_class._id});});
 Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
 Meteor.publish("theProblemSet",function(psid){return ProblemSets.find(psid);});

@@ -3,6 +3,7 @@
 {{#if isTA problemset.class_id}}
 <hr>
 <h2>TA reviews</h2>
+<button id="js-update">Update TA info</button>
 <ul>
 {{#each ta in tas problemset.class_id}}
 <li>{{ta.numReviews}} -- {{studentName ta.student_id}} </li>
