@@ -25,7 +25,7 @@ Template.reviewAnswer.onCreated(function(){
   });
 
   instance.autorun(function () {
-    console.log('in autorun');
+    //console.log('in autorun');
     var answer = instance.state.get('answer');
     if (!answer) {
       return;
@@ -34,9 +34,9 @@ Template.reviewAnswer.onCreated(function(){
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {
-      console.log("> Reviewing "+answer+" \n\n")
+      //console.log("> Reviewing "+answer+" \n\n")
     } else {
-      console.log("> Subscription is not ready yet. \n\n");
+      //console.log("> Subscription is not ready yet. \n\n");
     }
  });
 
@@ -46,12 +46,32 @@ Template.reviewAnswer.onCreated(function(){
 
 Template.reviewAnswer.helpers({
 
+
   otherReviews:function(aid){
 
     var instance = Template.instance();
     var reviews = Reviews.find({answer_id:aid});
     instance.state.set('answer',aid);
     return reviews
+  },
+
+  authorName: function(aid){
+    var answer = Answers.findOne(aid);
+    var profile = Profiles.findOne({id:answer.createdBy})
+    return profile.email+" -- "+profile.name
+  },
+
+  copiers:function(aid){
+    var answer = Answers.findOne(aid);
+    var answers = Answers.find({answer:answer.answer}).fetch();
+    return answers
+
+  },
+
+  author:function(uid){
+    //console.log("uid="+uid);
+    var author = Profiles.findOne({id:uid})
+    return author.email + " -- "+author.name
   },
 
   selected:function(point,val){
@@ -69,7 +89,7 @@ Template.reviewAnswer.helpers({
   },
 
   points: function(){
-    console.dir(['points this=',this])
+    //console.dir(['points this=',this])
     return(_.range(parseInt(this.q.points),-1,-1));
   },
 
@@ -115,7 +135,7 @@ Template.reviewAnswer.events({
       Answers.update(this.a._id,{$inc:{numReviews:1}})
       if (myInfo && myInfo.role=="teacher"){
         Answers.update(this.a._id,{$inc:{numTAreviews:1}});
-        console.log("incrementing TA reviews for "+this.a._id)
+        //console.log("incrementing TA reviews for "+this.a._id)
       }
       z = Reviews.insert(reviewObj);
     }

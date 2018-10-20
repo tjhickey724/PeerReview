@@ -12,6 +12,15 @@ Template.seeYourReviews.helpers({
     return _.pluck(rs,'rating');
   },
 
+  same_answers: function(aid){
+    var answer = Answers.findOne(aid);
+    var answers = Answers.find({answer:answer.answer}).fetch();
+    if (answers.length>1) {
+      //console.dir(answers);
+    }
+    return answers
+  },
+
   answer: function(){
     if (!this.reviews[0])
       return undefined;

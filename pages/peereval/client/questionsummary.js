@@ -17,6 +17,30 @@ Template.questionsummary.helpers({
     return answer || s.role=="teacher";
   },
 
+  copiers:function(aid){
+    var answer = Answers.findOne(aid);
+    var answers = Answers.find({answer:answer.answer,createdBy:{$ne:answer.createdBy}}).fetch();
+    /*if (answers.length>0) {
+      console.log("Possible cheating:");
+      console.dir(Profiles.findOne({id:answer.createdBy}).email)
+      console.dir(answers)
+    }
+    */
+    return answers
+  },
+
+  authorName: function(aid){
+    var answer = Answers.findOne(aid);
+    var profile = Profiles.findOne({id:answer.createdBy})
+    return profile.email+" -- "+profile.name
+  },
+
+  author:function(uid){
+    //console.log("uid="+uid);
+    var author = Profiles.findOne({id:uid})
+    return author.email + " -- "+author.name
+  },
+
 
 })
 
@@ -28,4 +52,8 @@ Template.questionsummary_review.helpers({
     return (s && t && (s.role=="teacher") && (t.role=="teacher"))
 
   },
+
+
+
+
 })

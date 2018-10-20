@@ -24,11 +24,19 @@
       <pre class="bg-info">{{a.answer}}</pre>
       <h2>Previous Reviews</h2>
       <div class="bg-warning">
-      {{#each review in otherReviews a._id}}
-      Rating: {{review.rating}}<br>{{review.review}}
-      <hr>
+        {{#each review in otherReviews a._id}}
+          Rating: {{review.rating}}<br>{{review.review}}
+          <hr>
       {{/each}}
-    </div>
+      </div>
+      <div class="bg-warning">
+        <h3>Same code as <br>{{authorName a._id}} <br>was submitted by</h3>
+        <ul>
+          {{#each copy in copiers a._id}}
+            <li> <a href="/reviewOneAnswer/{{a._id}}">{{author copy.createdBy}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
 
     </div>
     <div class="col-md-6">
