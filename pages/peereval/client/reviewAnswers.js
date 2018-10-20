@@ -63,7 +63,7 @@ Template.reviewAnswer.helpers({
 
   copiers:function(aid){
     var answer = Answers.findOne(aid);
-    var answers = Answers.find({answer:answer.answer}).fetch();
+    var answers = Answers.find({answer:answer.answer,createdBy:{$ne:answer.createdBy}}).fetch();
     return answers
 
   },
