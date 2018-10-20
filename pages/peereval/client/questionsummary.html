@@ -15,7 +15,7 @@
         <ul>
           {{#each copy in copiers answer._id}}
             <li> Copied?
-              <a href="/reviewOneAnswer/{{a._id}}">{{author copy.createdBy}}</a>
+              <a href="/reviewOneAnswer/{{copy._id}}">{{author copy.createdBy}}</a>
               {{copy.createdAt}}
             </li>
           {{/each}}

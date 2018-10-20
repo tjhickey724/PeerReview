@@ -30,7 +30,7 @@
       {{/each}}
       </div>
       <div class="bg-warning">
-        <h3>Author <br>{{authorName a._id}}</h3>
+        <b>Author: {{authorName a._id}}</b>
         <ul>
           {{#each copy in copiers a._id}}
             <li> copied? <a href="/reviewOneAnswer/{{a._id}}">{{author copy.createdBy}}</a></li>

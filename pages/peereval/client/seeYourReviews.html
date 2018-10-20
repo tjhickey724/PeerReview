@@ -20,6 +20,7 @@
         <th>Your Review</th>
         <th>CreatedAt</th>
         <th>Edit</th>
+        <th>Copied?</th>
       </tr>
     </thead>
     <tbody>
@@ -28,18 +29,20 @@
           <td><div  style="white-space: pre-wrap;">{{their_answer r.answer_id}}</div></td>
           <td>{{r.rating}}</td>
           <td> [{{other_reviews r.answer_id}}] </td>
-          <td> ...
-            <ul>{{#each a in same_answers r.answer_id}}
-                <li><a href="/reviewOneAnwer/{{a._id}}">{{a.createdBy}}</a></li>
-                {{/each}}
-            </ul>
-          </td>
+
           <td><div  style="white-space: pre-wrap;">{{r.review}}</div></td>
           <td>{{r.createdAt}}</td>
           <td>
             <a href="/reviewAnswer/{{r.question_id}}/{{r.answer_id}}/{{r._id}}">
               edit
             </a></td>
+            <td> {{authorName r.answer_id}}
+              <ul>{{#each a in same_answers r.answer_id}}
+                  <li>copied? <a href="/reviewOneAnswer/{{a._id}}">
+                    {{author a.createdBy}}</a></li>
+                  {{/each}}
+              </ul>
+            </td>
 
         </tr>
       {{/each}}

@@ -14,11 +14,24 @@ Template.seeYourReviews.helpers({
 
   same_answers: function(aid){
     var answer = Answers.findOne(aid);
-    var answers = Answers.find({answer:answer.answer}).fetch();
+    var answers = Answers.find({answer:answer.answer,createdBy:{$ne:answer.createdBy}}).fetch();
+
     if (answers.length>1) {
-      //console.dir(answers);
+      console.dir(answers);
     }
     return answers
+  },
+
+  authorName: function(aid){
+    var answer = Answers.findOne(aid);
+    var profile = Profiles.findOne({id:answer.createdBy})
+    return profile.email+" -- "+profile.name
+  },
+
+  author:function(uid){
+    //console.log("uid="+uid);
+    var author = Profiles.findOne({id:uid})
+    return author.email + " -- "+author.name
   },
 
   answer: function(){
