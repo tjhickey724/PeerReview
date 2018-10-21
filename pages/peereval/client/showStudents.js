@@ -9,15 +9,17 @@ Template.showStudents.helpers({
 
 Template.showStudent.helpers({
   profile:function(){
+    console.log("in showStudent.profile")
     var profile = Profiles.findOne({id:this.student.student_id});
     return profile},
 
   answers:function(){
+    console.log("in showStudent.answers")
     return Answers.find({createdBy:this.student.student_id})
   },
 
   answerTime:function(question){
-
+    console.log("in showStudent.answerTime")
     var a= Answers.findOne({question:question._id,createdBy:this.student.student_id})
     if (a)
       return "submitted at " + a.createdAt;
@@ -27,10 +29,12 @@ Template.showStudent.helpers({
   },
 
   questions:function(class_id){
+    console.log("in showStudent.questions")
     return Questions.find({class_id:class_id},{sort:{createdAt:-1}})
   },
 
   numReviews:function(question){
+    console.log("in showStudent.numReviews")
 
     var z = {createdBy:this.student.student_id,question:question._id}
     var a = Answers.findOne(z)
@@ -69,6 +73,7 @@ Template.showStudent.helpers({
   },
 
   reviews:function(question_id){
+    console.log("in showStudent.reviews")
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
     if (a) {
       var r = Reviews.find({answer_id:a._id})
@@ -103,16 +108,22 @@ Template.showStudent.helpers({
 
 Template.studentWork.helpers({
   profile:function(){
+    console.log("In studentWork.profile this.student=");
+    console.dir(this.student);
     var profile = Profiles.findOne({id:this.student.student_id});
     return profile},
 
   answers:function(){
+    console.log("In studentWork.answers this.student=");
+    console.dir(this.student);
     return Answers.find({createdBy:this.student.student_id})
   },
 
 
 
   answer:function(question_id){
+    console.log("In studentWork.answer this.student=");
+    console.dir(this.student);
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
 
     if (a)
@@ -123,6 +134,9 @@ Template.studentWork.helpers({
   },
 
   reviews:function(question_id){
+    console.log("In studentWork.reviews this.student=");
+    console.dir(this.student);
+
     var a = Answers.findOne({createdBy:this.student.student_id,question:question_id})
     if (a) {
       var r = Reviews.find({answer_id:a._id})
@@ -133,18 +147,24 @@ Template.studentWork.helpers({
   },
 
   questions:function(class_id){
+    console.log("In studentWork.questions class_id=");
+    console.dir(class_id);
     var qs = Questions.find({class_id:class_id},{sort:{createdAt:-1}})
     return qs
   },
 
 
   reviewsByStudent:function(student){
+    console.log("In studentWork.reviewsByStudent student=");
+    console.dir(student);
     // I need to add the class_id to each review!!
     var rs = Reviews.find({createdBy:student.student_id});
     return rs;
   },
 
   numReviews:function(question){
+    console.log("In studentWork.numReviews question=");
+    console.dir(question);
     var z = {createdBy:this.student.student_id,question:question._id}
     var a = Answers.findOne(z)
     if (a && a.myReviews) {
@@ -158,15 +178,17 @@ Template.studentWork.helpers({
 
 Template.studentReview.helpers({
   isInClass:function(){
+    console.log("in studentReview")
 
     var z =  this.class._id==this.review.class_id;
     return z;
   },
   testing:function(review){
+    console.log("in studentReview")
     return "this is a test"
   },
   reviewInfo:function(){
-
+    console.log("in studentReview")
     var q = Questions.findOne({_id:this.review.question_id})
     var a = Answers.findOne({_id:this.review.answer_id})
     return {question:q,answer:a}
@@ -175,6 +197,7 @@ Template.studentReview.helpers({
 
 
   TAclass: function(r){
+    console.log("in studentReview")
     var sinfo = StudentInfo.findOne({student_id:r.createdBy})
     if (sinfo.role == "teacher"){
       return 'bg-danger'
@@ -189,6 +212,7 @@ Template.studentReview.helpers({
 
 Template.otherStudentReview.helpers({
   TAclass: function(r){
+    console.log("in otherStudentReview")
     var sinfo = StudentInfo.findOne({student_id:r.createdBy})
     var theClass = ClassInfo.findOne(r.class_id);
 
@@ -199,6 +223,7 @@ Template.otherStudentReview.helpers({
     }
   },
   reviewer: function(r){
+    console.log("in otherStudentReview")
     var sinfo = StudentInfo.findOne({student_id:r.createdBy})
     return sinfo.role
   },

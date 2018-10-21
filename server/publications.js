@@ -125,7 +125,14 @@ Meteor.publish("myReviewedAnswers",function(qid){
 })
 
 Meteor.publish("myReviews",function(qid){
-  return Reviews.find({createdBy:this.userId,question_id:qid})
+  console.log('myReviews: qid:'+qid+"  this.userId:"+this.userId);
+  var rs=null
+  if (qid)
+    rs = Reviews.find({createdBy:this.userId,question_id:qid}).fetch()
+  else
+    rs = []
+  console.log('reviews = '); console.dir(rs);
+  return rs
 });
 
 Meteor.publish("reviewsOfMe",function(aid){

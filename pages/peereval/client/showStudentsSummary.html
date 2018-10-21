@@ -23,12 +23,15 @@
 
 <template name="showStudentSummaryCached">
   <tr>
-    <td> <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a></td>
-    <td> {{profile.email}}</td>
+    <td>
+        <a href="/studentWork/{{student._id}}/{{class._id}}"> {{profile.name}}</a>
+        </td>
+    <td class="{{dropped}}"> {{profile.email}}/{{profile.status}}</td>
     <td> {{student.numAnswers}}</td>
     <td> {{student.numReviewedAnswers}}</td>
     <td>{{student.avgReview}} </td>
     <td>{{student.numReviews}}</td>
+    <td><button class="btn btn-small btn-danger js-drop">drop</button></td>
   </tr>
 </template>
 

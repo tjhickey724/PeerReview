@@ -45,6 +45,31 @@ Template.showStudentSummaryCached.helpers({
   profile:function(){
     var profile = Profiles.findOne({id:this.student.student_id});
     return profile},
+
+  dropped:function(){
+    var profile = Profiles.findOne({id:this.student.student_id});
+    if (profile.status=="dropped") {
+      return "bg-danger"
+    }
+    else {
+      return ""
+    }
+  }
+})
+
+Template.showStudentSummaryCached.events({
+  "click .js-drop"(event,instance){
+    console.log("trying to drop ")
+    console.dir(this)
+    var z = Profiles.findOne({id:this.student.student_id})
+    if (z.status=="dropped") {
+      z.status = null
+    } else {
+      z.status="dropped"
+    }
+    Profiles.update(z._id,z)
+    console.dir(z)
+  }
 })
 
 Template.showStudentSummary.helpers({
