@@ -12,7 +12,11 @@
 <hr>
 <table class="table table-bordered table-striped">
   <thead>
-    <tr><td>name</td><td>email</td><td>grade</td></tr>
+    <tr><td>name</td><td>email</td>
+      {{#each q in psQuestions problemset._id}}
+      <td>{{q.title}}</td>
+      {{/each}}
+    <td>grade</td></tr>
   </thead>
   <tbody>
 {{#each student in students problemset.class_id}}

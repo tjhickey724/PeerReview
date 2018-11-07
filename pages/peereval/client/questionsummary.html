@@ -1,26 +1,12 @@
 <template name="questionsummary">
-  <h1>All Current Answers and Reviews<br> for the {{title}} Question</h1>
+  <h1>All Current Answers and Reviews<br> for the {{title}} Question:</h1>
   <pre class="bg-primary">{{question}}</pre>
   {{#if hasAnswered _id}}
 <ol>
   {{#each answer in answers _id}}
-    <li><h3>{{authorName answer._id}}</h3> <br>
-      <pre class="bg_info">{{answer.answer}}</pre>
-      <ul>
-        {{#each review in reviews answer._id}}
-          {{> questionsummary_review review=review}}
-        {{/each}}
-      </ul>
-      <div class="bg-warning">
-        <ul>
-          {{#each copy in copiers answer._id}}
-            <li> Copied?
-              <a href="/reviewOneAnswer/{{copy._id}}">{{author copy.createdBy}}</a>
-              {{copy.createdAt}}
-            </li>
-          {{/each}}
-        </ul>
-      </div>
+    <li> <a href="/onequestionsummary/{{_id}}/{{answer._id}}">View</a>
+      {{> onequestionsummary answer=answer}}
+
     </li>
   {{/each}}
 </ol>
@@ -30,9 +16,39 @@
   {{/if}}
 </template>
 
+<template name="onequestionsummary">
+  <h3>{{authorName answer._id}}</h3> <br>
+  <pre class="bg_info">{{answer.answer}}</pre>
+  <ul>
+    {{#each review in reviews answer._id}}
+      {{> questionsummary_review review=review}}
+    {{/each}}
+  </ul>
+  <div class="bg-warning">
+    <ul>
+      {{#each copy in copiers answer._id}}
+        <li> Copied?
+          <a href="/reviewOneAnswer/{{copy._id}}">{{author copy.createdBy}}</a>
+          {{copy.createdAt}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
 <template name="questionsummary_review">
-  <li class="{{#if isTA review.createdBy}}bg-primary{{else}}bg-warning{{/if}}">
-    [{{review.rating}}]:: {{review.review}}
-    {{#if isTA review.createdBy}}TA REVIEW{{/if}}
+  <li>
+    <div class="{{#if isTA review.createdBy}}bg-primary{{else}}bg-warning{{/if}}">
+      [{{review.rating}}]:: {{review.review}}
+      {{#if isTA review.createdBy}}<br>TA REVIEW{{/if}}
+      {{reviewerEmail review.createdBy}}
+    </div>
+    <br>
+    {{#if isTeacher}}
+    points:<input class="js-pts" type="text"><br>
+    comment:<br>
+    <textarea class="js-comment" cols="100%"></textarea><br>
+    <button class="js-update bg-danger">Update</button>
+    {{/if}}
   </li>
 </template>

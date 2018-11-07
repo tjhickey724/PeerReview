@@ -14,7 +14,12 @@ Template.reviewProblemSet.helpers({
   studentName(student_id){
     var p =  Profiles.findOne({id:student_id})
     return p.name;
-  }
+  },
+
+  psQuestions(id){
+    var qs = Questions.find({problemset_id:id});
+    return qs;
+  },
 
 
 
