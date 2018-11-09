@@ -1,4 +1,6 @@
-Meteor.publish("theProfiles",function(){return Profiles.find();});
+Meteor.publish("theProfiles",function(){
+  console.log("Publishing theProfiles")
+  return Profiles.find();});
 Meteor.publish("theQuestions",function(){
   return Questions.find(
     {$or:[{visible:true},{createdBy:this.userId}]}
@@ -107,6 +109,7 @@ Meteor.publish('TAview',function(data){
 
 
 Meteor.publish("myProfiles",function(){
+  console.log("publishing myProfiles")
   return Profiles.find({id:this.userId});});
 
 Meteor.publish("profilesForClass",function(cid){
@@ -117,9 +120,18 @@ Meteor.publish("profilesForClass",function(cid){
   return Profiles.find({id:{$in:studentIds}});
 });
 
+Meteor.publish("profilesForProblemSet",function(psid){
+  console.log('publishing profilesForProblemSet')
+  var cid = ProblemSets.findOne(psid).class_id
+  var studentsInClass = StudentInfo.find({class_id:cid}).fetch();
+  console.log('found studentsInClass: '+ studentsInClass.length)
+  var studentIds = _.pluck(studentsInClass,'student_id');
+  return Profiles.find({id:{$in:studentIds}});
+});
+
 Meteor.publish("profilesForQuestion",function(qid){
   var cid = Questions.findOne(qid).class_id
-  console.log('publishing profilesForClass')
+  console.log('publishing profilesForQuestion')
   var studentsInClass = StudentInfo.find({class_id:cid}).fetch();
   console.log('found studentsInClass: '+ studentsInClass.length)
   var studentIds = _.pluck(studentsInClass,'student_id');
@@ -127,10 +139,11 @@ Meteor.publish("profilesForQuestion",function(qid){
 });
 
 Meteor.publish("profilesForQuestionIfTA",function(qid){
+  console.log("publishing profilesForQuestionIfTA")
   var myInfo = StudentInfo.findOne({student_id:this.userId})
   var amTA = (myInfo && (myInfo.role="teacher"))  // or I own the class ...
   if (!amTA) return this.ready()
-  
+
   var cid = Questions.findOne(qid).class_id
   console.log('publishing profilesForClass')
   var studentsInClass = StudentInfo.find({class_id:cid}).fetch();

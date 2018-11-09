@@ -27,7 +27,8 @@ Template.reviewProblemSet.helpers({
 
 Template.reviewProblemSet.events({
   "click #js-update"(event,instance){
-    Meteor.call('update_summary',this.problemset.class_id,
+  //  Meteor.call('update_summary_ps',this.problemset.class_id,
+    Meteor.call('update_summary_ps',this.problemset._id,
       function(error,result){alert("student summary has been updated!")})
   },
 })
