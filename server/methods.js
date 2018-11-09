@@ -7,7 +7,8 @@ Meteor.methods({
       var ps = ProblemSets.find().count();
       var cs = ClassInfo.find().count();
       var ss = StudentInfo.find().count();
-      return {Questions:qs,Answers:as,Reviews:rs,ProblemSets:ps,Classes:cs,Students:ss};
+      var prs = Profiles.find().count();
+      return {Questions:qs,Answers:as,Reviews:rs,ProblemSets:ps,Classes:cs,Students:ss,Profiles:prs};
     },
 
     submit_all_answers(question){

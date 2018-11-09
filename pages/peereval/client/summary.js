@@ -1,6 +1,6 @@
 Template.summary.onCreated(function(){
   var instance = Template.instance();
-    
+
     if (instance.data.class.createdBy==Meteor.userId())
       Meteor.call('getAllQuestionData');
 })
@@ -10,8 +10,27 @@ Template.summary.helpers({
 
     return Questions.find({class_id:class_id})
   },
+  
+  owns_class:function(theClass){
+
+    if (theClass.createdBy == Meteor.userId()) {
+      return true;
+    }
+    var s = StudentInfo.findOne(
+      {class_id:theClass._id,student_id:Meteor.userId()}
+    )
+    return s && s.role=="teacher";
+  },
+
 })
 
+Template.summary.events({
+  "click #js-update"(event,instance){
+
+    Meteor.call('update_summary',this.class._id,
+      function(error,result){alert("student summary has been updated!")})
+  },
+})
 
 Template.question_summary_item.helpers({
   answers:function(qid){

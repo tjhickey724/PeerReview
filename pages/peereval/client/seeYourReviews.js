@@ -35,6 +35,8 @@ Template.seeYourReviews.helpers({
   },
 
   answer: function(){
+    console.log("inside 'answer'")
+    console.dir(this);
     if (!this.reviews[0])
       return undefined;
     var a = Answers.findOne({question:this.reviews[0].question_id});

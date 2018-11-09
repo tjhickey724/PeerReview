@@ -41,6 +41,11 @@ Template.questionsummary.helpers({
     return author.email + " -- "+author.name
   },
 
+  isTA(){
+    var t = StudentInfo.findOne({student_id:Meteor.userId()})
+    return (t && t.role=="teacher")
+  },
+
 
 })
 
@@ -82,7 +87,7 @@ Template.onequestionsummary.helpers({
   },
 
   author:function(uid){
-    //console.log("uid="+uid);
+    console.log("in author: uid="+uid);
     var author = Profiles.findOne({id:uid})
     return author.email + " -- "+author.name
   },

@@ -1,7 +1,9 @@
 <template name="summary">
 <h1>Summary of Activity on {{class.name}}</h1>
 
-
+{{#if owns_class class}}
+<button id="js-update">Update Table</button>
+{{/if}}
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
