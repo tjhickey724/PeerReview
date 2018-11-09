@@ -1,6 +1,6 @@
-Meteor.publish("theProfiles",function(){
-  console.log("Publishing theProfiles")
-  return Profiles.find();});
+
+//QUESTIONPUBS
+
 Meteor.publish("theQuestions",function(){
   return Questions.find(
     {$or:[{visible:true},{createdBy:this.userId}]}
@@ -19,29 +19,26 @@ Meteor.publish("theQuestionsForPS",function(psid){
     {problemset_id:psid}
   );
 });
-Meteor.publish("theAnswers",function(){return Answers.find();});
+
+
+Meteor.publish("myQuestions",function(){
+  return Questions.find({createdBy:this.userId})
+})
+
+
+
+Meteor.publish("theQuestionData",function(){
+  return QuestionData.find()
+})
+
+
+//ANSWERPUBS
+
+Meteor.publish("theAnswers",function(){
+  return Answers.find();});
+
 Meteor.publish("theAnswer",function(aid){
   return Answers.find(aid);});
-Meteor.publish("theReviews",function(){return Reviews.find();});
-Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
-Meteor.publish("oneClassInfo",function(id){return ClassInfo.find(id);});
-Meteor.publish("theClassInfoForPS",function(psid){
-  var ps = ProblemSets.findOne(psid);
-  return ClassInfo.find(ps.class_id);});
-Meteor.publish("theStudentInfo",function(){return StudentInfo.find();});
-Meteor.publish("theStudentInfoForPS",function(psid){
-  var ps = ProblemSets.findOne(psid);
-  var the_class = ClassInfo.findOne(ps.class_id);
-  return StudentInfo.find({class_id:the_class._id});});
-Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
-Meteor.publish("theProblemSet",function(psid){return ProblemSets.find(psid);});
-
-Meteor.publish("thePSanswers",function(psid){
-  var ps = ProblemSets.findOne(psid)
-  var questions = Questions.find({problemset_id:psid}).fetch()
-  var qids = _.pluck(questions,'_id')
-  return Answers.find({question:{$in:qids}})
-});
 
 Meteor.publish("oneAnswer",function(aid){
   var a = Answers.findOne(aid)
@@ -53,6 +50,80 @@ Meteor.publish("theAnswersToQuestion",function(qid){
   return Answers.find({question:qid});
 });
 
+Meteor.publish("thePSanswers",function(psid){
+  var ps = ProblemSets.findOne(psid)
+  var questions = Questions.find({problemset_id:psid}).fetch()
+  var qids = _.pluck(questions,'_id')
+  return Answers.find({question:{$in:qids}})
+});
+
+
+
+Meteor.publish("myAnswers",function(){
+  return Answers.find({createdBy:this.userId})
+})
+
+Meteor.publish("myAnswerToQuestion",function(qid){
+  return Answers.find({question:qid,createdBy:this.userId})
+})
+
+Meteor.publish("answersReviewedBy",function(sid){
+  var sinfo = StudentInfo.findOne(sid);
+  var myReviews =
+   Reviews.find({createdBy:sinfo.student_id});
+   var ans = _.pluck(myReviews.fetch(),'answer_id')
+   return Answers.find({_id:{$in:ans}});
+})
+
+Meteor.publish("answers2question",function(qid){
+  return Answers.find({question:qid})
+})
+
+Meteor.publish("myReviewedAnswers",function(qid){
+  return Answers.find({myReviewers:this.userId,question:qid})
+})
+
+
+
+//REVIEWPUBS
+
+
+Meteor.publish("theReviews",function(){return Reviews.find();});
+
+
+
+//CLASSPUBS
+
+Meteor.publish("theClassInfo",function(){return ClassInfo.find();});
+Meteor.publish("oneClassInfo",function(id){return ClassInfo.find(id);});
+Meteor.publish("theClassInfoForPS",function(psid){
+  var ps = ProblemSets.findOne(psid);
+  return ClassInfo.find(ps.class_id);});
+
+
+//STUDENTPUBS
+
+Meteor.publish("theStudentInfo",function(){
+  return StudentInfo.find();});
+
+Meteor.publish("theStudentInfoForPS",function(psid){
+  var ps = ProblemSets.findOne(psid);
+  var the_class = ClassInfo.findOne(ps.class_id);
+  return StudentInfo.find({class_id:the_class._id});});
+
+Meteor.publish("theStudentInfoForClass",function(cid){
+  var the_class = ClassInfo.findOne(cid);
+  return StudentInfo.find({class_id:the_class._id});});
+
+
+//PROBLEMSETPUBS
+
+Meteor.publish("theProblemSets",function(){return ProblemSets.find();});
+Meteor.publish("theProblemSet",function(psid){return ProblemSets.find(psid);});
+
+
+
+//REVIEWPUBS
 
 Meteor.publish("theTAreviews",function(psid){
 
@@ -86,6 +157,8 @@ Meteor.publish("theTAreviewsForPS",function(psid){
   return taReviews
 })
 
+
+
 Meteor.publish('TAview',function(data){
 
   var course = ClassInfo.findOne(data.cid);
@@ -106,6 +179,12 @@ Meteor.publish('TAview',function(data){
     return this.ready()
   }
 })
+
+
+
+Meteor.publish("theProfiles",function(){
+  console.log("Publishing theProfiles")
+  return Profiles.find();});
 
 
 Meteor.publish("myProfiles",function(){
@@ -155,38 +234,6 @@ Meteor.publish("profilesForQuestionIfTA",function(qid){
 //var myInfo = StudentInfo.findOne({student_id:this.userId})
 //var amTA = (myInfo && (myInfo.role="teacher"))  // or I own the class ...
 
-
-Meteor.publish("myQuestions",function(){
-  return Questions.find({createdBy:this.userId})
-})
-
-Meteor.publish("theQuestionData",function(){
-  return QuestionData.find()
-})
-
-Meteor.publish("myAnswers",function(){
-  return Answers.find({createdBy:this.userId})
-})
-
-Meteor.publish("myAnswerToQuestion",function(qid){
-  return Answers.find({question:qid,createdBy:this.userId})
-})
-
-Meteor.publish("answersReviewedBy",function(sid){
-  var sinfo = StudentInfo.findOne(sid);
-  var myReviews =
-   Reviews.find({createdBy:sinfo.student_id});
-   var ans = _.pluck(myReviews.fetch(),'answer_id')
-   return Answers.find({_id:{$in:ans}});
-})
-
-Meteor.publish("answers2question",function(qid){
-  return Answers.find({question:qid})
-})
-
-Meteor.publish("myReviewedAnswers",function(qid){
-  return Answers.find({myReviewers:this.userId,question:qid})
-})
 
 Meteor.publish("myReviews",function(qid){
   var rs=null
@@ -299,6 +346,8 @@ Meteor.publish("reviewsOfanswer",function(qid){
   }
 });
 
+
+
 Meteor.publish("myClassInfo",function(){
   var sinfo = StudentInfo.find({student_id:this.userId}).fetch();
   var myclassids = _.pluck(sinfo,'class_id')
@@ -312,8 +361,14 @@ Meteor.publish("classesOwnedByMe",function(){
   return myclasses
 });
 
+
+
 Meteor.publish("myStudentInfo",function(){
   return StudentInfo.find({student_id:this.userId});});
+
+
+
+
 
 Meteor.publish("myProblemSets",function(){
   var sinfo = StudentInfo.find({student_id:this.userId}).fetch();
