@@ -69,7 +69,7 @@ Meteor.methods({
 
 
     update_summary_ps(psid){
-      console.log("update_summary_ps: "+psid)
+      //console.log("update_summary_ps: "+psid)
       // this updates the summary info for each student in a class
       // get all students in the class
       var ps = ProblemSets.findOne(psid)
@@ -79,8 +79,8 @@ Meteor.methods({
       // get all questions from the class
       var qs = Questions.find({problemset_id:psid}).fetch()
       var qids = _.pluck(qs,'_id')
-      console.log("qids=")
-      console.dir(qids)
+      //console.log("qids=")
+      //console.dir(qids)
       students.forEach(function(s){
 
         // all answers by student s in this class
@@ -121,7 +121,7 @@ Meteor.methods({
 
 
       })
-      console.log("summary updated")
+      //console.log("summary updated")
     },
 
 })
