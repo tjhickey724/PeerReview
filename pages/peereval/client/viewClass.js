@@ -1,7 +1,8 @@
 Template.viewClass.helpers({
 
   owns_class:function(theClass){
-
+    console.log("in owns_class: ")
+    console.dir(theClass)
     if (theClass.createdBy == Meteor.userId()) {
       return true;
     }
@@ -11,16 +12,29 @@ Template.viewClass.helpers({
     return s && s.role=="teacher";
   },
 
-  student_id: function(theClass){
-
+  student_id: function(theClassId){
+    console.log("cid="+theClassId)
+    console.log("uid="+Meteor.userId())
     var s = StudentInfo.findOne(
-      {class_id:theClass._id,student_id:Meteor.userId()}
+      {class_id:theClassId,student_id:Meteor.userId()}
     )
+    console.dir(s)
 
     if (s) {
       return s._id;
     }
     return "";
+  },
+
+  numAnswers: function(theClass){
+    var cid = theClass._id
+    console.log("class_id = "+cid);
+    console.dir(theClass)
+    return Answers.find({createdBy:Meteor.userId()}).count()
+  },
+
+  numQuestions: function(theClass){
+    return Questions.find().count()
   }
 })
 

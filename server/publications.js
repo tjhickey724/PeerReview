@@ -6,11 +6,21 @@ Meteor.publish("theQuestions",function(){
     {$or:[{visible:true},{createdBy:this.userId}]}
   );
 });
+
 Meteor.publish("theClassQuestions",function(classId){
-  return Questions.find(
-    {$and:[{class_id:classId},{$or:[{visible:true},{createdBy:this.userId}]}]}
-  );
+  //console.log("publishing theClassQuestions")
+  var ps = ProblemSets.find({class_id:classId}).fetch()
+  var psids = _.pluck(ps,'_id')
+  //console.log(JSON.stringify(psids))
+
+  var theQuestions= Questions.find(
+     {$and:[
+      {problemset_id:{$in:psids}},
+      {$or:[{visible:true},{createdBy:this.userId}]}
+     ]})
+  return theQuestions
 });
+
 Meteor.publish("theQuestion",function(qid){
   return Questions.find(qid);
 });
@@ -55,6 +65,21 @@ Meteor.publish("oneAnswer",function(aid){
   var a = Answers.findOne(aid)
   var as = Answers.find({question:a.question})
   return as
+});
+
+Meteor.publish("theClassAnswers",function(classId){
+  //console.log("publishing theClassQuestions")
+  var ps = ProblemSets.find({class_id:classId}).fetch()
+  var psids = _.pluck(ps,'_id')
+  //console.log(JSON.stringify(psids))
+
+  var theQuestions= Questions.find(
+     {$and:[
+      {problemset_id:{$in:psids}},
+      {$or:[{visible:true},{createdBy:this.userId}]}
+    ]}).fetch()
+  var qids = _.pluck(theQuestions,'_id')
+  return Answers.find({question:{$in:qids},createdBy:this.userId})
 });
 
 Meteor.publish("theAnswersToQuestion",function(qid){

@@ -1,6 +1,7 @@
 <template name="viewClass">
   <h1>{{class.name}}</h1>
-
+   <h2>Questions Answered: {{numAnswers class}}/{{numQuestions class}}</h2>
+   <br>
 
 
   {{#if owns_class class}}
@@ -12,11 +13,11 @@
   {{/if}}
   <a class="btn btn-sm btn-info" href="/summary/{{class._id}}">Summary</a>
 
-    <a class="btn btn-sm btn-info" href="/studentWork/{{student_id class}}/{{class._id}}"> Details</a>
+    <a class="btn btn-sm btn-info" href="/studentWork/{{student_id class._id}}/{{class._id}}"> Details</a>
     {{> showProblemSets class=class}}
 
     To see your personal progress on the questions click on
-      <a class="btn btn-sm btn-info" href="/studentWork/{{student_id class}}/{{class._id}}"> Details</a>
+      <a class="btn btn-sm btn-info" href="/studentWork/{{student_id class._id}}/{{class._id}}"> Details</a>
       link.
 </template>
 

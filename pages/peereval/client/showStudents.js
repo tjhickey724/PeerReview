@@ -242,7 +242,7 @@ Template.otherStudentReview.helpers({
     var theClass = ClassInfo.findOne(r.class_id);
 
     var p = Profiles.findOne({id:r.createdBy})
-    console.dir(r)
+    //console.dir(r)
     //if (reviewerEmails.includes(p.email)) return true
 
     if ((sinfo.role == "teacher")){ // && (theClass.createdBy==Meteor.userId())){
