@@ -43,14 +43,17 @@
     <div class="{{#if isTA review.createdBy}}bg-primary{{else}}bg-warning{{/if}}">
       [{{review.rating}}]:: {{review.review}}
       {{#if isTA review.createdBy}}<br>TA REVIEW{{/if}}
-      {{reviewerEmail review.createdBy}}
+      {{#if isTA}}
+        {{reviewerEmail review.createdBy}}
+      {{/if}}
     </div>
     <br>
     {{#if isTeacher}}
     points:<input class="js-pts" type="text"><br>
     comment:<br>
     <textarea class="js-comment" cols="100%"></textarea><br>
-    <button class="js-update bg-danger">Update</button>
+    <button class="js-update bg-danger">Override TA's review</button>
+    <button class="js-newReview bg-danger">Create your own review</button>
     {{/if}}
   </li>
 </template>

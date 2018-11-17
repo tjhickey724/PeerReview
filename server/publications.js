@@ -20,6 +20,17 @@ Meteor.publish("theQuestionsForPS",function(psid){
   );
 });
 
+Meteor.publish("theQuestionForAnswer",function(aid){
+  var ans = Answers.findOne(aid)
+  if (ans) {
+    var q = Questions.find(ans.question);
+    return q
+  } else {
+    return this.ready()
+  }
+
+});
+
 
 Meteor.publish("myQuestions",function(){
   return Questions.find({createdBy:this.userId})
@@ -106,6 +117,9 @@ Meteor.publish("theClassInfoForPS",function(psid){
 Meteor.publish("theStudentInfo",function(){
   return StudentInfo.find();});
 
+Meteor.publish("oneStudentInfo",function(sid){
+  return StudentInfo.find(sid);});
+
 Meteor.publish("theStudentInfoForPS",function(psid){
   var ps = ProblemSets.findOne(psid);
   var the_class = ClassInfo.findOne(ps.class_id);
@@ -172,7 +186,7 @@ Meteor.publish('TAview',function(data){
 
     var rs=  Reviews.find({createdBy:s.student_id})
     var as=  Answers.find({createdBy:s.student_id})
-    var qs=  Questions.find()
+    var qs=  Questions.find(data.cid)
 
     return [rs,as,qs]
   } else {
@@ -183,56 +197,56 @@ Meteor.publish('TAview',function(data){
 
 
 Meteor.publish("theProfiles",function(){
-  console.log("Publishing theProfiles")
+  //console.log("Publishing theProfiles")
   return Profiles.find();});
 
 
 Meteor.publish("myProfiles",function(){
-  console.log("publishing myProfiles")
+  //console.log("publishing myProfiles")
   return Profiles.find({id:this.userId});});
 
 Meteor.publish("profilesForClass",function(cid){
-  console.log('publishing profilesForClass')
+  //console.log('publishing profilesForClass')
   var studentsInClass = StudentInfo.find({class_id:cid}).fetch();
-  console.log('found studentsInClass: '+ studentsInClass.length)
+  //console.log('found studentsInClass: '+ studentsInClass.length)
   var studentIds = _.pluck(studentsInClass,'student_id');
   return Profiles.find({id:{$in:studentIds}});
 });
 
 Meteor.publish("profilesForProblemSet",function(psid){
-  console.log('publishing profilesForProblemSet')
+  //console.log('publishing profilesForProblemSet')
   var cid = ProblemSets.findOne(psid).class_id
   var studentsInClass = StudentInfo.find({class_id:cid}).fetch();
-  console.log('found studentsInClass: '+ studentsInClass.length)
+  //console.log('found studentsInClass: '+ studentsInClass.length)
   var studentIds = _.pluck(studentsInClass,'student_id');
   return Profiles.find({id:{$in:studentIds}});
 });
 
 Meteor.publish("profilesForQuestion",function(qid){
   var cid = Questions.findOne(qid).class_id
-  console.log('publishing profilesForQuestion')
+  //console.log('publishing profilesForQuestion')
   var studentsInClass = StudentInfo.find({class_id:cid}).fetch();
-  console.log('found studentsInClass: '+ studentsInClass.length)
+  //console.log('found studentsInClass: '+ studentsInClass.length)
   var studentIds = _.pluck(studentsInClass,'student_id');
   return Profiles.find({id:{$in:studentIds}});
 });
 
 Meteor.publish("profilesForQuestionIfTA",function(qid){
-  console.log("publishing profilesForQuestionIfTA")
+  //console.log("publishing profilesForQuestionIfTA")
   var myInfo = StudentInfo.findOne({student_id:this.userId})
-  var amTA = (myInfo && (myInfo.role="teacher"))  // or I own the class ...
+  var amTA = (myInfo && (myInfo.role=="teacher"))  // or I own the class ...
   if (!amTA) return this.ready()
 
   var cid = Questions.findOne(qid).class_id
-  console.log('publishing profilesForClass')
+  //console.log('publishing profilesForClass')
   var studentsInClass = StudentInfo.find({class_id:cid}).fetch();
-  console.log('found studentsInClass: '+ studentsInClass.length)
+  //console.log('found studentsInClass: '+ studentsInClass.length)
   var studentIds = _.pluck(studentsInClass,'student_id');
   return Profiles.find({id:{$in:studentIds}});
 });
 
 //var myInfo = StudentInfo.findOne({student_id:this.userId})
-//var amTA = (myInfo && (myInfo.role="teacher"))  // or I own the class ...
+//var amTA = (myInfo && (myInfo.role=="teacher"))  // or I own the class ...
 
 
 Meteor.publish("myReviews",function(qid){
@@ -398,7 +412,7 @@ Meteor.publish('toReview',function(qid){
   var query = {question:qid,createdBy:this.userId};
   var myAns = Answers.findOne(query)
   var myInfo = StudentInfo.findOne({student_id:this.userId})
-  var amTA = (myInfo && (myInfo.role="teacher"))  // or I own the class ...
+  var amTA = (myInfo && (myInfo.role=="teacher"))  // or I own the class ...
 
 
   if (!myAns){

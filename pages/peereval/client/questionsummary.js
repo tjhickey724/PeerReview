@@ -95,7 +95,9 @@ Template.onequestionsummary.helpers({
 
 })
 
-const reviewerEmails = [
+
+
+var reviewerEmails = [
   "katherinezyb@brandeis.edu",
   "yaeleiger@brandeis.edu",
   "jerrypeng666@brandeis.edu",
@@ -111,10 +113,12 @@ const reviewerEmails = [
   "chungek@brandeis.edu",
   "zepenghu@brandeis.edu",
   "jialinzh@brandeis.edu",
-  "xiqu@brandeis.edu"
+  "xiqu@brandeis.edu",
+  "csjbs2018@gmail.com",
+  "tjhickey@brandeis.edu"
 ]
 
-const teacherEmails = [
+var teacherEmails = [
   "tjhickey@brandeis.edu",
   "wburstein@brandeis.edu",
   "xiqu@brandeis.edu"
@@ -127,8 +131,12 @@ Template.questionsummary_review.helpers({
   },
 
   isTA(reviewer){
+    if (!reviewer){
+      reviewer = Meteor.userId()
+    }
     var s = StudentInfo.findOne({student_id:reviewer});
-    var t = StudentInfo.findOne({student_id:Meteor.userId()})
+    //console.log("isTA "+reviewer+" ");console.dir(s)
+    //var t = StudentInfo.findOne({student_id:Meteor.userId()})
     var p = Profiles.findOne({id:reviewer})
     if (reviewerEmails.includes(p.email)) return true
 
@@ -161,5 +169,28 @@ Template.questionsummary_review.events({
     review.review = "INSTRUCTOR OVERRIDE: "+comment
     //console.dir(review)
     Reviews.update(review._id,review)
+  },
+
+  "click .js-newReview"(event,instance){
+    //console.log("clicked on update!")
+    var pts = instance.$(".js-pts").val()
+    var comment = instance.$(".js-comment").val()
+    //console.log(JSON.stringify([pts,comment,this.review._id]))
+    var review = Reviews.findOne(this.review._id);
+    var newrating = parseInt(pts)
+
+    console.log("Creating new review ...")
+
+    var newReview = Object.assign({},review)
+    newReview.review =comment
+    newReview.rating=newrating
+    newReview.createdBy = Meteor.userId()
+    newReview.createdAt = new Date()
+    delete newReview._id
+
+    //console.dir(review)
+    Reviews.insert(newReview)
+    console.dir(newReview);
+    //Reviews.update(review._id,review)
   },
 })
