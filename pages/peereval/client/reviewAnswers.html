@@ -29,14 +29,16 @@
           <hr>
       {{/each}}
       </div>
+      <!--
       <div class="bg-warning">
-        <b>Author: {{authorName a._id}}</b>
+        <b>Author: {authorName a._id}</b>
         <ul>
-          {{#each copy in copiers a._id}}
-            <li> copied? <a href="/reviewOneAnswer/{{a._id}}">{{author copy.createdBy}}</a></li>
-          {{/each}}
+          {#each copy in copiers a._id}
+            <li> copied? <a href="/reviewOneAnswer/{a._id}">{author copy.createdBy}</a></li>
+          {/each}
         </ul>
       </div>
+      -->
 
     </div>
     <div class="col-md-6">
