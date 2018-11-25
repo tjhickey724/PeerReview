@@ -473,9 +473,9 @@ Meteor.publish('toReview',function(qid){
         question:qid,
         submitted:true,
         createdBy:{$ne:this.userId,$nin:myAns.myReviews},
-      },
-      { sort:{numTAreviews:1}
-      }
+      }//,
+      //{ sort:{numTAreviews:1}
+    //  }
     ).fetch()
   } else {
     toReviewList = Answers.find(
@@ -483,9 +483,9 @@ Meteor.publish('toReview',function(qid){
         question:qid,
         submitted:true,
         createdBy:{$ne:this.userId,$nin:myAns.myReviews},
-      },
-      { sort:{numReviews:1}
-      }
+      }//,
+      //{ sort:{numReviews:1}
+    //  }
     ).fetch()
   }
 
