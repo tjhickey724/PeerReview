@@ -16,9 +16,9 @@ Template.seeYourReviews.helpers({
     var answer = Answers.findOne(aid);
     var answers = Answers.find({answer:answer.answer,createdBy:{$ne:answer.createdBy}}).fetch();
 
-    if (answers.length>1) {
-      console.dir(answers);
-    }
+    //if (answers.length>1) {
+    //  console.dir(answers);
+    //}
     return answers
   },
 
@@ -35,8 +35,8 @@ Template.seeYourReviews.helpers({
   },
 
   answer: function(){
-    console.log("inside 'answer'")
-    console.dir(this);
+    //console.log("inside 'answer'")
+    //console.dir(this);
     if (!this.reviews[0])
       return undefined;
     var a = Answers.findOne({question:this.reviews[0].question_id});

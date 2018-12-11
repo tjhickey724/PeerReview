@@ -17,7 +17,9 @@
 </template>
 
 <template name="onequestionsummary">
-  <!-- <h3>{{authorName answer._id}}</h3> --><br>
+  {{#if amTA}}
+  <h3>{{authorName answer._id}}</h3><br>
+  {{/if}}
   <pre class="bg_info">{{answer.answer}}</pre>
   <ul>
     {{#each review in reviews answer._id}}

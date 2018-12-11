@@ -1,8 +1,8 @@
 Template.viewClass.helpers({
 
   owns_class:function(theClass){
-    console.log("in owns_class: ")
-    console.dir(theClass)
+    //console.log("in owns_class: ")
+    //console.dir(theClass)
     if (theClass.createdBy == Meteor.userId()) {
       return true;
     }
@@ -13,12 +13,12 @@ Template.viewClass.helpers({
   },
 
   student_id: function(theClassId){
-    console.log("cid="+theClassId)
-    console.log("uid="+Meteor.userId())
+    //console.log("cid="+theClassId)
+    //console.log("uid="+Meteor.userId())
     var s = StudentInfo.findOne(
       {class_id:theClassId,student_id:Meteor.userId()}
     )
-    console.dir(s)
+    //console.dir(s)
 
     if (s) {
       return s._id;
@@ -28,8 +28,8 @@ Template.viewClass.helpers({
 
   numAnswers: function(theClass){
     var cid = theClass._id
-    console.log("class_id = "+cid);
-    console.dir(theClass)
+    //console.log("class_id = "+cid);
+    //console.dir(theClass)
     return Answers.find({createdBy:Meteor.userId()}).count()
   },
 

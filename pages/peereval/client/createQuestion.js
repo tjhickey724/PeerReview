@@ -40,7 +40,6 @@ Template.createQuestion.events({
     // set the .submitted field of all answers to this question to True
     // but this has to be a meteor method ... as it is affecting all
     // answers to this question ...
-    console.dir(this);
     Meteor.call('submit_all_answers',[this.question])
   },
 

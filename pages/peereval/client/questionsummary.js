@@ -87,9 +87,16 @@ Template.onequestionsummary.helpers({
   },
 
   author:function(uid){
-    console.log("in author: uid="+uid);
     var author = Profiles.findOne({id:uid})
     return author.email + " -- "+author.name
+  },
+
+  amTA(){
+    reviewer = Meteor.userId()
+    var p = Profiles.findOne({id:reviewer})
+
+    if (reviewerEmails.includes(p.email)) return true
+    return false
   },
 
 
@@ -179,7 +186,6 @@ Template.questionsummary_review.events({
     var review = Reviews.findOne(this.review._id);
     var newrating = parseInt(pts)
 
-    console.log("Creating new review ...")
 
     var newReview = Object.assign({},review)
     newReview.review =comment
@@ -190,7 +196,6 @@ Template.questionsummary_review.events({
 
     //console.dir(review)
     Reviews.insert(newReview)
-    console.dir(newReview);
     //Reviews.update(review._id,review)
   },
 })

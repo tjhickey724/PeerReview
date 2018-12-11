@@ -243,7 +243,7 @@ Template.otherStudentReview.helpers({
 
     var p = Profiles.findOne({id:r.createdBy})
     //console.dir(r)
-    //if (reviewerEmails.includes(p.email)) return true
+    if (reviewerEmails.includes(p.email)) return true
 
     if ((sinfo.role == "teacher")){ // && (theClass.createdBy==Meteor.userId())){
       return 'bg-primary'

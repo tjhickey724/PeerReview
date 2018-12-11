@@ -21,8 +21,8 @@ Template.showQuestionFull.onCreated(function(){
 Template.showQuestionFull.helpers({
 
   submitted: function(){
-    console.log('in submitted')
-    console.dir(this);
+    //console.log('in submitted')
+    //console.dir(this);
     return(this.submitted)
   },
 
@@ -101,8 +101,8 @@ Template.showQuestionFull.events({
     } else {
       Answers.insert(answerData)
     }
-    console.log("just updated or inserted:")
-    console.dir(answerData)
+    //console.log("just updated or inserted:")
+    //console.dir(answerData)
 
     var zz = Answers.findOne(answerData);
 

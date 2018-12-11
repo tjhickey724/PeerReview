@@ -12,9 +12,9 @@ Meteor.methods({
     },
 
     submit_all_answers(question){
-      console.log("here is where I set the submitted flag to True for all answers to this question!")
+      //console.log("here is where I set the submitted flag to True for all answers to this question!")
       var a = Answers.update({question:question._id},{$set:{submitted:true}},{multi:true})
-      console.dir(a)
+      //console.dir(a)
     },
 
     update_summary(class_id){
@@ -63,7 +63,7 @@ Meteor.methods({
 
 
       })
-      console.log("summary updated")
+      //console.log("summary updated")
     },
 
 

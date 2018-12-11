@@ -452,10 +452,11 @@ Meteor.publish('toReview',function(qid){
     toReview = {r:{rating:-1,review:""},q:q,a:nextReview,test:"This is a test!"}
 
     if (_.contains(nextReview.myReviewers,this.userId)) {
-      // if I've just reviewed this on, the change the reviewing flag!
+      // if I've just reviewed this one, then change the reviewing flag!
 
       Answers.update(myAns._id,{$unset:{reviewing:""}})
       myAns.reviewing = undefined
+      // now drop through to the next if statement...
     } else {
 
         toReview = Answers.find(myAns.reviewing)
@@ -499,6 +500,7 @@ Meteor.publish('toReview',function(qid){
 
   Answers.update(myAns._id,{$set:{reviewing:nextReview._id}})
 
-  return [nextReview]
+  //return [nextReview]
+  return Answers.find(nextReview._id)
 
 })

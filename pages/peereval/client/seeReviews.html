@@ -30,10 +30,10 @@
 </template>
 
 <template name="reviewsOfMyAnswer">
-  <tr class="{{#if isTA r}}bg-primary{{/if}}">
+  <tr class="{{#if TAclass r}}bg-primary{{/if}}">
     <td>{{r.rating}} points</td>
     <td><pre>{{r.review}}</pre></td>
     <td>{{r.createdAt}}</td>
-    <td>{{#if isTA r}}TA review{{else}}student review{{/if}}</td>
+    <td>{{#if TAclass r}}TA review{{else}}student review{{/if}}</td>
   </tr>
 </template>

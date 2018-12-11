@@ -42,7 +42,7 @@ Template.home.events({
     }
 
     if (!theClass){
-      alert("There is no class with PIN ="+classcode)
+      alert("There is no class with PIN "+classcode)
       return
     }
 

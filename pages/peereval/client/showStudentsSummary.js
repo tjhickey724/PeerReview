@@ -25,7 +25,7 @@ Template.showStudentsSummary.events({
   },
 
   "click #js-ansSubmitted"(event,instance){
-    console.log("in ansSubmitted")
+    //console.log("in ansSubmitted")
     instance.state.set('sortOn',{numAnswers:-1})
   },
 
@@ -59,8 +59,8 @@ Template.showStudentSummaryCached.helpers({
 
 Template.showStudentSummaryCached.events({
   "click .js-drop"(event,instance){
-    console.log("trying to drop ")
-    console.dir(this)
+    //console.log("trying to drop ")
+    //console.dir(this)
     var z = Profiles.findOne({id:this.student.student_id})
     if (z.status=="dropped") {
       z.status = null
@@ -68,7 +68,7 @@ Template.showStudentSummaryCached.events({
       z.status="dropped"
     }
     Profiles.update(z._id,z)
-    console.dir(z)
+    //console.dir(z)
   }
 })
 
@@ -123,7 +123,7 @@ Template.showStudentSummary.helpers({
 
     if (a) {
       var rs = Reviews.find({answer_id:a._id}).fetch();
-      console.dir(rs);
+      //console.dir(rs);
       if (rs.length==0) return 0.0;
       var sum=0.0;
       rs.forEach(function(r){sum = sum+r.rating})
@@ -141,21 +141,21 @@ Template.showStudentSummary.helpers({
     var numQs = Questions.find({class_id:this.student.class_id}).count()
     var total=0.0
     var numReviewed=0
-    console.log('avgReviews');
-    console.log('qs len = '+numQs)
+    //console.log('avgReviews');
+    //console.log('qs len = '+numQs)
     as.forEach(function(a){
         var rs = Reviews.find({answer_id:a._id}).fetch();
         if (rs.length>0){
           numReviewed = numReviewed+1
           var question = Questions.findOne(a.question)
           var sum=0.0;
-          console.dir(a);
+          //console.dir(a);
           rs.forEach(function(r){sum = sum+r.rating})
-          console.log(JSON.stringify(_.pluck(rs,'rating')))
-          console.log("sum="+sum);
+          //console.log(JSON.stringify(_.pluck(rs,'rating')))
+          //console.log("sum="+sum);
           var z =  sum/question.points/rs.length;
           total = total + z
-          console.log('total='+total);
+          //console.log('total='+total);
         }
     })
     var avgR = -1
@@ -164,7 +164,7 @@ Template.showStudentSummary.helpers({
     else {
       avgR = "no reviews yet"
     }
-    console.log('average Review = '+avgR)
+    //console.log('average Review = '+avgR)
     return avgR
 
 
