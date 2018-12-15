@@ -33,7 +33,7 @@ You don't have permission to see this page
 
 <template name="studentProblemSetData">
 <tr>
-  <td>{{name student.student_id}}</td>
+  <td>{{name student.student_id}} :: {{student.student_id}}</td>
   <td>{{email student.student_id}}</td>
   {{#each score in scores student problemset}}
   <td>{{score.val}}
