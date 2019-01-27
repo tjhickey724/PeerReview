@@ -5,6 +5,7 @@
 <ol>
   {{#each answer in answers _id}}
     <li> <a href="/onequestionsummary/{{_id}}/{{answer._id}}">View</a>
+      <br>{{answer.createdAt}}<br>
       {{> onequestionsummary answer=answer}}
 
     </li>
@@ -20,7 +21,8 @@
   {{#if amTA}}
   <h3>{{authorName answer._id}}</h3><br>
   {{/if}}
-  <pre class="bg_info">{{answer.answer}}</pre>
+  <pre class="bg_info">{{answer.answer}}<br>Submitted: {{answer.createdAt}}</pre>
+
   <ul>
     {{#each review in reviews answer._id}}
       {{> questionsummary_review review=review}}

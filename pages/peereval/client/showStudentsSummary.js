@@ -24,6 +24,11 @@ Template.showStudentsSummary.events({
       function(error,result){alert("student summary has been updated!")})
   },
 
+  "click #js-email"(event,instance){
+    //console.log("in ansSubmitted")
+    instance.state.set('sortOn',{email:1})
+  },
+
   "click #js-ansSubmitted"(event,instance){
     //console.log("in ansSubmitted")
     instance.state.set('sortOn',{numAnswers:-1})

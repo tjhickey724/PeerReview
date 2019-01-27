@@ -32,6 +32,7 @@ Meteor.methods({
         // all reviews by student s in this class
         var rs = Reviews.find({createdBy:s.student_id,class_id:class_id}).fetch()
         // for each answer, find the average review value
+        var profile = Profiles.findOne({id:s.student_id})
 
         var numReviewed=0;
         var total=0.0
@@ -59,6 +60,7 @@ Meteor.methods({
         s.numReviewedAnswers = numReviewed;
         s.avgReview = avgR;
         s.numReviews = rs.length;
+        s.email = profile.email.toLowerCase();
         StudentInfo.update(s._id,s);
 
 

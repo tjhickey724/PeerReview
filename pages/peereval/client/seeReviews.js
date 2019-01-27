@@ -12,8 +12,20 @@ Template.seeReviews.helpers({
   }
 })
 
-
 var reviewerEmails = [
+  "csjbs2018@gmail.com",
+  "tjhickey@brandeis.edu",
+  "chickey@berklee.edu",
+  "xiqu@brandeis.edu",
+  "guirongliu@brandeis.edu",
+  "irvingperez@brandeis.edu",
+  "andrews9008@brandeis.edu",
+  "jnovas@brandeis.edu",
+  "floria0126@brandeis.edu",
+  "eshacala@brandeis.edu"
+]
+
+var reviewerEmailsFall18 = [
   "katherinezyb@brandeis.edu",
   "yaeleiger@brandeis.edu",
   "jerrypeng666@brandeis.edu",
